@@ -1,0 +1,26 @@
+<?php
+
+return [
+	[0, 'Nobody'],
+	[100, 'Lazy Boy'],
+	[300, 'Beginner'],
+	[600, 'Junior'],
+	[1000, 'Older Junior'],
+	[1500, 'Early Senior'],
+	[2100, 'Seniorish'],
+	[2800, 'Senior'],
+	[3600, 'Elder Senior'],
+	[4500, 'The Senior'],
+	[5500, 'Amateur Athlete'],
+	[6600, 'Less of an Amateur Athlete'],
+	[7800, 'An Actual Athlete'],
+	[9100, 'A Frikking Athlete'],
+	[10500, 'More than an Athlete'],
+	[12000, 'Above and Beyond'],
+	[13600, 'Real Tough Guy'],
+	[15300, 'A Big Effing Guy'],
+	[17100, 'Demigod'],
+	[19000, 'Legend'],
+	[21000, 'The Zeus Himself'],
+	[1000000, 'Infinity'],
+];
