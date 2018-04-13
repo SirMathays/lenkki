@@ -11,7 +11,8 @@ use Auth;
 class HomeController extends Controller
 {
     /**
-     * Returns a top list
+     * Return a top list
+     * @author Matti
      *
      * @param  string  $listType
      * @param  int     $limit     0
@@ -33,7 +34,8 @@ class HomeController extends Controller
     }
 
     /**
-     * Returns 10 most recent activities
+     * Return 10 most recent activities
+     * @author Matti
      *
      * @return object
      */
@@ -50,9 +52,10 @@ class HomeController extends Controller
     }
 
     /**
-     * Returns activities related to the user
+     * Return activities related to user
+     * @author Matti
      *
-     * @param  int $rowId
+     * @param  int  $rowId
      * @return object
      */
     public function userActivities($rowId) {
@@ -69,8 +72,9 @@ class HomeController extends Controller
 
     /**
      * Show the application dashboard.
+     * @author Matti
      *
-     * @return \Illuminate\Http\Response
+     * @return Illuminate\Http\Response
      */
     public function index()
     {

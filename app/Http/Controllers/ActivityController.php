@@ -12,11 +12,25 @@ use GuzzleHttp\Client;
 
 class ActivityController extends Controller
 {
+    /**
+     * Show new Activity form
+     * @author Matti
+     *
+     * @return Illuminate\View\View
+     */
     public function newActivity() 
     {
     	return view('activity.new');
     }
 
+    /**
+     * Show activity history page
+     * @author Matti
+     *
+     * @param  string  $year
+     * @param  string  $month  NULL
+     * @return Illuminate\View\View
+     */
     public function history($year, $month = NULL) {
         if(!$month)
             $data = User::select('users.id', 'users.name', 'users.avatar')->topListYearly($year)->get();
@@ -33,10 +47,24 @@ class ActivityController extends Controller
         ]);
     }
 
+    /**
+     * Redirect user to the correct activity history URL
+     * @author Matti
+     *
+     * @param  Illuminate\Http\Request  $request
+     * @return Illuminate\Http\Response
+     */
     public function historyFilter(Request $request) {
         return redirect(route('history', ['month' => $request->input('month'), 'year' => $request->input('year')]));
     }
 
+    /**
+     * Show activity edit page
+     * @author Matti
+     *
+     * @param  int  $id
+     * @return Illuminate\View\View
+     */
     public function edit($actId) 
     {
         $activity = Activity::findOrFail($actId);
@@ -52,6 +80,13 @@ class ActivityController extends Controller
         ]);
     }
 
+    /**
+     * Show activity
+     * @author Matti
+     *
+     * @param  int  $id
+     * @return Illuminate\View\View
+     */
     public function show($actId) 
     {
         $activity = Activity::findOrFail($actId);
@@ -61,6 +96,13 @@ class ActivityController extends Controller
         ]);
     }
 
+    /**
+     * Validate and save activity
+     * @author Matti
+     *
+     * @param  Illuminate\Http\Request  $request
+     * @return Illuminate\Http\Response
+     */
     public function save(Request $request) 
     {
     	$request->validate([
@@ -113,6 +155,13 @@ class ActivityController extends Controller
         return redirect(route('home'));
     }
 
+    /**
+     * Delete activity
+     * @author Matti
+     *
+     * @param  Illuminate\Http\Request  $request
+     * @return Illuminate\Http\Response
+     */
     public function delete(Request $request) {
         $request->validate([
             'id' => 'required|exists:activities,id',
@@ -129,6 +178,13 @@ class ActivityController extends Controller
         return redirect(route('home'));
     }
 
+    /**
+     * Sends subscription plea to Strava API
+     * @author Matti
+     * @todo   Actually figure out how to use this fukken thing
+     *
+     * @return void
+     */
     public function stravaSubscription() {
         $client = new Client(); //GuzzleHttp\Client
         $result = $client->post('https://api.strava.com/api/v3/push_subscriptions', [
@@ -143,12 +199,26 @@ class ActivityController extends Controller
 
     }
 
+    /**
+     * Receives stuff from Strava API
+     * @author Matti
+     * @todo   Actually figure out how to use this fukken thing
+     *
+     * @return void
+     */
     public function stravaSubscriptionCallback() {
         $client = new Client();
         $response = $client->request('GET', 'https://6d19c8cd.ngrok.io/auth/strava/subscribe/callback');
         return $response->getHeader('hub.challenge');
     }
 
+    /**
+     * I don't even know
+     * @author Matti
+     * @todo   Actually figure out how to use this fukken thing
+     *
+     * @return void
+     */
     public function getActivity($activity) {
         return 'hih';
     }

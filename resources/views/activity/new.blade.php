@@ -6,12 +6,14 @@
     	<form action="{{ action('ActivityController@save') }}" method="POST" class="form-horizontal" enctype="multipart/form-data">
     		{{ csrf_field() }}
             
-            @if($edit = !empty($activity))
-            <input type="hidden" name="activity_id" value="{{ $activity->id }}">
-            <h3 class="col-md-offset-4 col-md-8">@lang('ui.activity.singular', ['id' => $activity->id])</h3>
-            @else
-            <h3 class="col-md-offset-4 col-md-8">@lang('ui.activity.new')</h3>
-            @endif
+            <div class="row">
+                @if($edit = !empty($activity))
+                <input type="hidden" name="activity_id" value="{{ $activity->id }}">
+                    <h3 class="col-md-offset-4 col-md-8">@lang('ui.activity.singular', ['id' => $activity->id])</h3>
+                @else
+                    <h3 class="col-md-offset-4 col-md-8">@lang('ui.activity.new')</h3>
+                @endif
+            </div>
 
             <div class="form-group{{ $errors->has('type_id') ? ' has-error' : '' }}">
                 <label for="type_id" class="col-md-4 control-label">@lang('ui.activity.type_id')</label>

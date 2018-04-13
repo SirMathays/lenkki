@@ -11,8 +11,10 @@
     		{{ csrf_field() }}
 
             <input type="hidden" name="id" value="{{ $user->id }}">
-            <h3 class="col-md-offset-4 col-md-8">@lang('ui.user.edit')</h3>
-
+            <div class="row">
+                <h3 class="col-md-offset-4 col-md-8">@lang('ui.user.edit')</h3>
+            </div>
+            
     		<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                 <label for="name" class="col-md-4 control-label">@lang('ui.name')</label>
 
