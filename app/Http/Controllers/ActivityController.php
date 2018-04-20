@@ -97,6 +97,21 @@ class ActivityController extends Controller
     }
 
     /**
+     * Get activity
+     * @author Matti
+     *
+     * @param  int  $id
+     * @return Illuminate\View\View
+     */
+    public function get($actId)
+    {
+        $data = Activity::findOrFail($actId);
+        $data->performed_at_formatted = $data->performed_at->format('j.n.Y');
+
+        return $data->toArray();
+    }
+
+    /**
      * Validate and save activity
      * @author Matti
      *
@@ -162,12 +177,7 @@ class ActivityController extends Controller
      * @param  Illuminate\Http\Request  $request
      * @return Illuminate\Http\Response
      */
-    public function delete(Request $request) {
-        $request->validate([
-            'id' => 'required|exists:activities,id',
-        ]);
-
-        $id = $request->input('id');
+    public function delete($id) {
         $activity = Activity::findOrFail($id);
 
         if(!$activity->userHasRights())

@@ -137,9 +137,20 @@
                     <button type="submit" class="btn btn-primary">
                         <i class="fa fa-save"></i> @lang('ui.save')
                     </button>
+                    @if($edit)
+                        <button type="submit" class="btn btn-danger" form="delete">
+                            <i class="fa fa-trash"></i> @lang('ui.delete')
+                        </button>
+                    @endif
                 </div>
             </div>
     	</form>
+
+        @if($edit)
+            <form action="{{ action('ActivityController@delete', $activity->id) }}" method="POST" id="delete" style="display:hidden">
+                {{ csrf_field() }}
+            </form>
+        @endif
     </div>
 </div>
 @endsection

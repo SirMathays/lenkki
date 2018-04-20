@@ -1,5 +1,5 @@
 <template>
-    <a :href="'/activity/' + id" class="list-row button">
+    <a v-on:click="$emit('show')" class="list-row button">
         <div class="row-child">
             <user-avatar v-if="showProfile == true" :link="false" :key="id" :id="id" :initials="initials" :avatar="avatar"></user-avatar>
             <span class="text-muted"><b>{{ type }}</b><br><small>{{ km }}km/{{ duration }}min</small></span>
@@ -26,7 +26,7 @@
     export default {
         data: function () {
             return {
-                showModal: false
+                // 
             }
         },
         props: {

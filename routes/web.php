@@ -51,6 +51,10 @@ Route::middleware('auth')->group(function() {
 		Route::prefix('user')->group(function() {
     		Route::get('/activities/{rowId}', 'HomeController@userActivities');
 		});
+
+		Route::prefix('activity')->group(function() {
+			Route::get('/{rowId}', 'ActivityController@get');
+		});
 	});
 
 	

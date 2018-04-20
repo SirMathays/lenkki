@@ -11,10 +11,8 @@ import Vue from 'vue';
 window.Vue = require('vue');
 
 import VueRouter from 'vue-router';
-import VModal from 'vue-js-modal';
  
 window.Vue.use(VueRouter);
-Vue.use(VModal);
 
 // import VueCountUp from 'vue-countup';
 // Vue.component('vuecountup', VueCountUp);
@@ -22,6 +20,7 @@ Vue.use(VModal);
 Vue.component('top-list', require('./components/TopList.vue'));
 Vue.component('activity-list', require('./components/ActivityList.vue'));
 Vue.component('user-avatar', require('./components/UserAvatar.vue'));
+Vue.component('activity-modal', require('./components/modals/ActivityModal.vue'));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -32,9 +31,17 @@ Vue.component('user-avatar', require('./components/UserAvatar.vue'));
 const app = new Vue({
     el: '#app',
     data: {
-    	showModal: false,
+    	showActivityModal: false,
+        activeActivity: null
+    },
+    methods: {
+        showActivity: function(rowId) {
+            this.showActivityModal = true;
+            this.activeActivity = rowId;
+        }
     },
     mounted: function() {
+        // 
     }
 });
 

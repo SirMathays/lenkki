@@ -12,7 +12,12 @@ class Activity extends Model
 {
     use SoftDeletes;
     
-    protected $appends = ['avatar_url', 'score', 'image_url'];
+    protected $appends = [
+        'avatar_url',
+        'score',
+        'image_url',
+        'user_has_rights'
+    ];
 
 	/**
      * The attributes that are dates.
@@ -29,7 +34,11 @@ class Activity extends Model
      * @var array
      */
     protected $fillable = [
-        'km', 'type_id', 'duration', 'performed_at', 'user_id'
+        'km', 
+        'type_id', 
+        'duration', 
+        'performed_at', 
+        'user_id'
     ];
 
     public function user() {
@@ -58,6 +67,10 @@ class Activity extends Model
     }
 
     public function userHasRights() {
+        return $this->user->id == Auth::id() ? true : false;
+    }
+
+    public function getUserHasRightsAttribute() {   
         return $this->user->id == Auth::id() ? true : false;
     }
 

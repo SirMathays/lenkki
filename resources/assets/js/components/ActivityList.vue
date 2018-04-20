@@ -1,6 +1,7 @@
 <template>
     <div class="list log">
     	<activity v-for="row, index in rows" 
+            @show="$emit('show-activity', row.id)"
             :key="row.id" 
             :id="row.id" 
             :showProfile="showProfile"

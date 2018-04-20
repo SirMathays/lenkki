@@ -26,6 +26,8 @@
 
 <body>
     <div id="app">
+        <activity-modal :id="activeActivity" v-if="showActivityModal" @close="showActivityModal = false"></activity-modal>
+
         @guest
         <div class="logo">
             <a href="/login">

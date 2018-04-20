@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h3 class="text-center">Viimeisimmät päivitykset</h3>
-                <activity-list></activity-list>
+                <activity-list v-on:show-activity="showActivity"></activity-list>
             </div>
         </div>
     </div>
