@@ -31,12 +31,10 @@ Vue.component('activity-modal', require('./components/modals/ActivityModal.vue')
 const app = new Vue({
     el: '#app',
     data: {
-    	showActivityModal: false,
-        activeActivity: null
+        activeActivity: false,
     },
     methods: {
         showActivity: function(rowId) {
-            this.showActivityModal = true;
             this.activeActivity = rowId;
         }
     },

@@ -26,7 +26,7 @@
 
 <body>
     <div id="app">
-        <activity-modal :id="activeActivity" v-if="showActivityModal" @close="showActivityModal = false"></activity-modal>
+        <activity-modal :id="activeActivity" v-if="activeActivity" @close="activeActivity = false"></activity-modal>
 
         @guest
         <div class="logo">
