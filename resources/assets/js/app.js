@@ -21,6 +21,7 @@ Vue.component('top-list', require('./components/TopList.vue'));
 Vue.component('activity-list', require('./components/ActivityList.vue'));
 Vue.component('user-avatar', require('./components/UserAvatar.vue'));
 Vue.component('activity-modal', require('./components/modals/ActivityModal.vue'));
+Vue.component('award-modal', require('./components/modals/AwardModal.vue'));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -32,14 +33,30 @@ const app = new Vue({
     el: '#app',
     data: {
         activeActivity: false,
+        unseenAwards: false,
     },
     methods: {
         showActivity: function(rowId) {
             this.activeActivity = rowId;
+        },
+        checkMedals() {
+            var app = this;
+
+            axios.get('/v1/user/unseenAwards?count=true')
+                .then(function (resp) {
+                    if(resp.data > 0) {
+                        app.unseenAwards = true;
+                    } else {
+                        app.unseenAwards = false;
+                    }
+                })
+                .catch(function (resp) {
+                    alert("Could not load awards");
+                });
         }
     },
     mounted: function() {
-        // 
+        this.checkMedals();
     }
 });
 

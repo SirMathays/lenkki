@@ -48,7 +48,8 @@ class UserController extends Controller
      * @param  int  $userId
      * @return Illuminate\View\View
      */
-    public function profilePage($userId) {
+    public function profilePage($userId) 
+    {
     	$user = User::findOrFail($userId);
 
     	return view('user.show', [
@@ -61,7 +62,8 @@ class UserController extends Controller
      *
      * @return Illuminate\View\View
      */
-    public function edit() {
+    public function edit() 
+    {
         return view('user.edit', [
             'user' => Auth::user(),
         ]);
@@ -73,7 +75,8 @@ class UserController extends Controller
      * @param  Illuminate\Http\Request $request
      * @return Illuminate\Http\RedirectResponse
      */
-    public function save(Request $request) {
+    public function save(Request $request) 
+    {
 
         $request->validate([
             'name' => 'required|string',
@@ -120,7 +123,22 @@ class UserController extends Controller
      *
      * @return App\Award
      */
-    public function getUnseenAwards() {
-        return Auth::user()->unseenAwards;
+    public function getUnseenAwards(Request $request) 
+    {
+        if($request->has('count'))
+            return Auth::user()->unseenAwards->count();
+        else
+            return Auth::user()->unseenAwards;
+    }
+
+    /**
+     * Description
+     *
+     * @param string string
+     * @return void
+     */
+    public function awardsSeen() 
+    {
+        Auth::user()->unseenAwards()->update(['user_notified' => true]);
     }
 }

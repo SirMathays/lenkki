@@ -50,6 +50,8 @@ Route::middleware('auth')->group(function() {
 
 		Route::prefix('user')->group(function() {
     		Route::get('/activities/{rowId}', 'HomeController@userActivities');
+    		Route::get('/unseenAwards', 'UserController@getUnseenAwards');
+    		Route::get('/awardsSeen', 'UserController@awardsSeen');
 		});
 
 		Route::prefix('activity')->group(function() {

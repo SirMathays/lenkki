@@ -548,6 +548,16 @@ h3 {
 		width: 100%;
 		margin: 0 30px;
 	}
+
+	h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
+		&:first-child {
+			margin-top: 0;
+		}
+	}
+
+	.award-locker {
+		margin-bottom: 40px;
+	}
 }
 
 .modal-close-button {

@@ -27,6 +27,7 @@
 <body>
     <div id="app">
         <activity-modal :id="activeActivity" v-if="activeActivity" @close="activeActivity = false"></activity-modal>
+        <award-modal v-if="unseenAwards" @close="unseenAwards = false"></award-modal>
 
         @guest
         <div class="logo">
