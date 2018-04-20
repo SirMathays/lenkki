@@ -2,7 +2,7 @@
 	<modal-core v-if="loading == false" v-on:close="$emit('close')">
 		<div class="row">
 			<img v-if="activity.image_url" v-bind:src="activity.image_url" class="image-banner">
-			<h3 class="col-md-offset-1 col-md-10 tidbits">
+			<h3 class="col-md-12 tidbits">
                 <span class="tidbit"><b>{{ activity_type.name }}</b></span>
                 <span>{{ activity.performed_at_formatted }}</span>
                 <span class="xp pull-right">+{{ activity.score }} xp</span>
