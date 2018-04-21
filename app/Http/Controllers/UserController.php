@@ -126,7 +126,7 @@ class UserController extends Controller
     public function getUnseenAwards(Request $request) 
     {
         if($request->has('count'))
-            return Auth::user()->unseenAwards->count();
+            return response(['count' => Auth::user()->unseenAwards->count()]);
         else
             return Auth::user()->unseenAwards;
     }

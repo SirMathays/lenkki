@@ -44,7 +44,7 @@ const app = new Vue({
 
             axios.get('/v1/user/unseenAwards?count=true')
                 .then(function (resp) {
-                    if(resp.data > 0) {
+                    if(resp.data.count > 0) {
                         app.unseenAwards = true;
                     } else {
                         app.unseenAwards = false;

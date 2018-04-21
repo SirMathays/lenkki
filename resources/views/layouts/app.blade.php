@@ -26,8 +26,10 @@
 
 <body>
     <div id="app">
-        <activity-modal :id="activeActivity" v-if="activeActivity" @close="activeActivity = false"></activity-modal>
-        <award-modal v-if="unseenAwards" @close="unseenAwards = false"></award-modal>
+        @auth
+            <activity-modal :id="activeActivity" v-if="activeActivity" @close="activeActivity = false"></activity-modal>
+            <award-modal v-if="unseenAwards" @close="unseenAwards = false"></award-modal>
+        @endauth
 
         @guest
         <div class="logo">
@@ -102,6 +104,8 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset(asset_version('js/app.js')) }}"></script>
+    @auth
+        <script src="{{ asset(asset_version('js/app.js')) }}"></script>
+    @endauth
 </body>
 </html>

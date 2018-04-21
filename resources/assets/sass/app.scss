@@ -445,6 +445,27 @@ h3 {
 		}
 	}
 
+	&.large {
+		margin: 12px;
+		width: 80px;
+		height: 80px;
+		font-size: 2rem;
+		line-height: 22px;
+
+		&::after, &::before {
+			height: 14px;
+			width: 18px;
+		}
+
+		&::before {
+			margin-left: -8px;
+		}
+
+		&::after {
+			margin-left: 8px;
+		}
+	}
+
 	&::after, &::before {
 		content: '';
 		height: 10px;
@@ -549,6 +570,16 @@ h3 {
 		margin: 0 30px;
 	}
 
+	.explode {
+		opacity: 0.5;
+		position: absolute;
+		width: 160%;
+		height: auto;
+		z-index: -1;
+		left: -30%;
+		top: -13%;
+	}
+
 	h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
 		&:first-child {
 			margin-top: 0;
@@ -557,6 +588,9 @@ h3 {
 
 	.award-locker {
 		margin-bottom: 40px;
+		margin-top: 10px;
+		// display: block;
+		overflow-x: scroll;
 	}
 }
 
