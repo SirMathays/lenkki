@@ -21,8 +21,6 @@
     "dependencies": {
         "font-awesome": "^4.7.0",
         "moment": "^2.20.1",
-        "vue-countup": "^0.1.0",
-        "vue-material-datepicker": "^2.0.1",
         "vue-router": "^3.0.1"
     }
 }
