@@ -10,7 +10,7 @@
             <h3 class="col-md-offset-1 col-md-10 tidbits">
                 <span class="tidbit"><b>{{ $activity->activityType->name }}</b></span>
                 <span>{{ $activity->performed_at->format('j.n.Y') }}</span>
-                <span class="xp pull-right">+{{ $activity->score }} xp</span>
+                <span class="xp pull-right">+{{ $activity->xp }} xp</span>
             </h3>
             <div class="col-md-offset-1 col-md-10">
                 <p><b>Suorittaja:</b> <a href="{{ route('profile', $activity->user->id) }}">{{ $activity->user->name }}</a></p>

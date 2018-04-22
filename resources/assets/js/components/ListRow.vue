@@ -36,7 +36,7 @@
             }
         },
         components: {
-            'user-avatar': UserAvatar,
+            'user-avatar': UserAvatar
         },
         mounted() {
             //

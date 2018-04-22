@@ -5,18 +5,25 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use App\Events\ActivitySaving;
+
 use Auth;
 use Image;
 
 class Activity extends Model
 {
     use SoftDeletes;
+
+    protected $dispatchesEvents = [
+        'saving' => ActivitySaving::class,
+    ];
     
     protected $appends = [
         'avatar_url',
-        'score',
         'image_url',
-        'user_has_rights'
+        'user_has_rights',
+        'activity_name',
+        'performed_at_formatted',
     ];
 
 	/**
@@ -49,10 +56,6 @@ class Activity extends Model
         return $this->belongsTo(ActivityType::class, 'type_id');
     }
 
-    public function getScoreAttribute() {
-        return round($this->km*$this->activityType->multiplier);
-    }
-
     public function getAvatarUrlAttribute() {
         return $this->user->avatar_url;
     }
@@ -72,6 +75,14 @@ class Activity extends Model
 
     public function getUserHasRightsAttribute() {   
         return $this->user->id == Auth::id() ? true : false;
+    }
+
+    public function getPerformedAtFormattedAttribute() {
+        return $this->performed_at->format('j.n.Y');
+    }
+
+    public function getActivityNameAttribute() {
+        return $this->activityType->name;
     }
 
     public function getImageUrlAttribute() {

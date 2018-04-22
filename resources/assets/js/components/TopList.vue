@@ -2,15 +2,22 @@
     <div class="top-list-wrapper">
         <loading-el v-if="loading"></loading-el>
         <div class="links text-center">
-            <a class="link" id="monthly" @click="topListMonthly(3)" v-bind:class="{ active: active == 'monthly' }">{{ monthNames[date.getMonth()] + 'kuu' }}</a>
-            <a class="link" id="yearly" @click="topListYearly(3)" v-bind:class="{ active: active == 'yearly' }">{{ date.getFullYear() }}</a>
+            <a class="link" id="monthly" @click="active = 'monthly'" v-bind:class="{ active: active == 'monthly' }">{{ monthNames[date.getMonth()] + 'kuu' }}</a>
+            <a class="link" id="yearly" @click="active = 'yearly'" v-bind:class="{ active: active == 'yearly' }">{{ date.getFullYear() }}</a>
         </div>
         
         <div class="list top-list" v-bind:class="{ 'list-loading': loading }">
-            <list-row v-for="row, index in rows" :key="row.id" :id="row.id" :initials="row.initials" :avatar="row.avatar" :comparison="row.comparison" :score="row.score"></list-row>
+            <list-row 
+                v-for="row, index in rows" 
+                :key="row.id" 
+                :id="row.id" 
+                :initials="row.initials" 
+                :avatar="row.avatar_url" 
+                :comparison="row.comparison" 
+                :score="row.user_xp"></list-row>
             <div class="more">
-                <a @click="active == 'monthly' ? topListMonthly(showAll ? 3 : 0) : topListYearly(showAll ? 3 : 0)">
-                    <i class="fa fa-chevron-down" v-bind:class="{ 'fa-rotate-180': showAll  }"></i>
+                <a @click="limit == 3 ? limit = 0 : limit = 3">
+                    <i class="fa fa-chevron-down" v-bind:class="{ 'fa-rotate-180': limit == 0  }"></i>
                 </a>
             </div>
         </div>
@@ -30,7 +37,6 @@
         transition: .4s;
     }
     .list-loading {
-        /*transform: translateX(-25px);*/
         opacity: 0;
     }
     .more {
@@ -47,12 +53,14 @@
     export default {
         data: function () {
             return {
-                loading: false,
-                showAll: false,
-                active: 'monthly',
                 monthNames: ["Tammi", "Helmi", "Maalis", "Huhti", "Touko", "Kesä", "Heinä", "Elo", "Syys", "Loka", "Marras", "Joulu"],
                 date: new Date(),
-                rows: []
+                loading: false,
+                rows: [],
+
+                // CARE ABOUT THESE
+                active: 'monthly',
+                limit: 3
             }
         },
         components: {
@@ -60,21 +68,33 @@
             'loading-el': Loading
         },
         mounted() {
-            this.topListMonthly(3);
+            this.getTopList(this.active, this.limit);
+        },
+        watch: {
+            active: function () {
+                this.getTopList(this.active, this.limit);
+            },
+            limit: function () {
+                this.getTopList(this.active, this.limit);
+            }
         },
         methods: {
-            topListMonthly(limit = 0) {
+            getTopList(type, limit) {
                 var app = this;
                 app.loading = true;
-                
-                if(limit > 0)
-                    app.showAll = false;
-                else
-                    app.showAll = true;
 
-                axios.get('/v1/lists/topListMonthly/' + limit)
+                var dateUrl = '/';
+                var month = app.date.getMonth()+1;
+                var year = app.date.getFullYear();
+
+                if(type == 'monthly') {
+                    dateUrl = '/'+year+'/'+month;
+                } else if(type == 'yearly') {
+                    dateUrl = '/'+year;
+                }
+
+                axios.get('/v1/lists/xp-top-list/' + app.limit + dateUrl)
                     .then(function (resp) {
-                        app.active = 'monthly';
                         app.rows = resp.data;
                         app.loading = false;
                     })
@@ -83,26 +103,6 @@
                         alert("Could not load rows");
                     });
             },
-            topListYearly(limit = 0) {
-                var app = this;
-                app.loading = true;
-
-                if(limit > 0)
-                    app.showAll = false;
-                else
-                    app.showAll = true;
-
-                axios.get('/v1/lists/topListYearly/' + limit)
-                    .then(function (resp) {
-                        app.active = 'yearly';
-                        app.rows = resp.data;
-                        app.loading = false;
-                    })
-                    .catch(function (resp) {
-                        app.loading = false;
-                        alert("Could not load rows");
-                    });
-            }
         }
     }
 </script>

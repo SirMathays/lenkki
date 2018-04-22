@@ -5,8 +5,8 @@
 				<img src="/img/explode.png" alt="explode" class="explode">
 			</transition>
 			<h1 class="h2 text-center">Hienoa!</h1>
-			<h2 v-if="awards.length > 1" class="h3 text-center">Olet ansainnut mitaleja!</h2>
-			<h2 v-if="awards.length < 2" class="h3 text-center">Olet ansainnut mitalin!</h2>
+			<h2 v-if="awards.length > 1" class="h4 text-center">Olet ansainnut mitaleja!</h2>
+			<h2 v-if="awards.length < 2" class="h4 text-center">Olet ansainnut mitalin!</h2>
 			<div class="award-locker">
 				<span v-for="award, index in awards" class="award large shadow" v-bind:class="award.grade_string">
 	                <span v-for="name_part, index in award.name_parts">{{ name_part }}</span>
@@ -29,7 +29,7 @@
 		margin-top: 0;
 	}
 
-	.h3 {
+	.h4 {
 		margin-top: 15px;
 		color: #b84d0a;
 	}

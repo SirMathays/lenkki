@@ -44,7 +44,7 @@ Route::middleware('auth')->group(function() {
 	// , 'namespace' => 'Api\V1', 'as' => 'api.'
 	Route::group(['prefix' => '/v1'], function () {
 		Route::prefix('lists')->group(function() {
-		    Route::get('/{listType}/{limit}', 'HomeController@topList');
+		    Route::get('/xp-top-list/{limit?}/{year?}/{month?}', 'HomeController@xpTopList');
 		    Route::get('/recentActivities', 'HomeController@recentActivities');
 		});
 

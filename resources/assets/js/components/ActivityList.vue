@@ -5,13 +5,13 @@
             :key="row.id" 
             :id="row.id" 
             :showProfile="showProfile"
-            :type="row.type"
+            :activityName="row.activity_name"
             :initials="row.user.initials" 
             :avatar="row.user.avatar_url" 
-            :score="row.score"
+            :xp="row.xp"
             :km="row.km" 
             :duration="row.duration"
-            :date="row.date"></activity>
+            :date="row.performed_at_formatted"></activity>
             <h5 v-if="rows.length <= 0" class="text-center">Ei aktiviteetteja</h5>
     </div>
 </template>

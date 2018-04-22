@@ -17,8 +17,20 @@
 			<div class="form-group">
 				<select name="month" class="form-control">
 					<option value="" {{ !$month ? 'selected' : NULL }}>-</option>
-					@foreach(['1','2','3','4','5','6','7','8','9','10','11','12'] as $monthOption)
-					<option value="{{ $monthOption }}" {{ $month == $monthOption ? 'selected' : NULL }}>{{ $monthOption }}</option>
+					@foreach([
+						'1' => 'tammikuu',
+						'2' => 'helmikuu',
+						'3' => 'maaliskuu',
+						'4' => 'huhtikuu',
+						'5' => 'toukokuu',
+						'6' => 'kesäkuu',
+						'7' => 'heinäkuu',
+						'8' => 'elokuu',
+						'9' => 'syyskuu',
+						'10' => 'lokakuu',
+						'11' => 'marraskuu',
+						'12' => 'joulukuu'] as $monthOption => $monthName)
+					<option value="{{ $monthOption }}" {{ $month == $monthOption ? 'selected' : NULL }}>{{ $monthName }}</option>
 					@endforeach
 				</select>
 			</div>
@@ -39,9 +51,11 @@
 					<td>
 						<a href="{{ route('profile', $user->id) }}">{{ $user->name }}</a>
 					</td>
-					<td>{{ $user->score }}</td>
+					<td>{{ $user->user_xp }}</td>
 					<td>
-						<?php $award = App\Award::userAndName($user->id, implode('-', [$month, $year]))->first(); ?>
+						@php
+							$award = App\Award::userAndName($user->id, implode('-', [$month, $year]))->first();
+						@endphp
 						@if($award)
 						<div class="award small shadow {{ $award->grade_string }}"></div>
 		                @endif

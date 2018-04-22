@@ -5,7 +5,7 @@
 			<h3 class="col-md-12 tidbits">
                 <span class="tidbit"><b>{{ activity_type.name }}</b></span>
                 <span>{{ activity.performed_at_formatted }}</span>
-                <span class="xp pull-right">+{{ activity.score }} xp</span>
+                <span class="xp pull-right">+{{ activity.xp }} xp</span>
             </h3>
             <div class="col-md-12 form-group">
                 <p><b>Suorittaja:</b> {{ user.name }}</a></p>

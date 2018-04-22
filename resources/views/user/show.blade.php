@@ -18,12 +18,12 @@
                     <span class="tidbit">{{ $user->level->name }}</span>
                 </p>
                 <div class="row-progress-bar">
-                    <?php
-                        $current = $user->level->score-$user->level->last_cap;
+                    @php
+                        $current = $user->level->xp-$user->level->last_cap;
                         $levelXp = $user->level->next_cap-$user->level->last_cap;
-                    ?>
+                    @endphp
                     <div class="row-progress" style="width:{{ $total = ($current/$levelXp)*100 }}%">
-                        <span class="progress-amount">{{ $user->level->score }}xp</span>
+                        <span class="progress-amount">{{ $user->level->xp }}xp</span>
                     </div>
                     <span class="progress-cap">{{ $user->level->next_cap }}xp</span>
                 </div>

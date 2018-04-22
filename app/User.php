@@ -14,7 +14,11 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    protected $appends = ['avatar_url', 'level', 'initials'];
+    protected $appends = [
+        'avatar_url',
+        'level',
+        'initials'
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -22,7 +26,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar'
+        'name',
+        'email',
+        'password',
+        'avatar'
     ];
 
     /**
@@ -31,11 +38,16 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     public function activities() {
         return $this->hasMany(Activity::class);
+    }
+
+    public function xp() {
+        return $this->activities()->sum('xp');
     }
 
     public function awards() {
@@ -54,48 +66,54 @@ class User extends Authenticatable
         return $awards;
     }
 
-    public function scopeTopListMonthly($query, $month = NULL, $year = NULL) {
-        $now = Carbon::now();
-        
-        if(!$month)
-            $month = $now->format('m');
-
-        if(!$year)
-            $year = $now->format('Y');
-
-        return $query->selectRaw("ifnull(round(sum((select km where deleted_at IS NULL and year(performed_at) = $year AND month(performed_at) = $month)*multiplier)), 0) as score")
-            ->leftJoin('activities', 'activities.user_id', 'users.id')
-            ->leftJoin('activity_types', 'activity_types.id', 'activities.type_id')
-            ->orderBy('score', 'DESC')
-            ->orderBy('users.name', 'ASC')
-            ->groupBy('users.id');
-    }
-
-    public function scopeTopListYearly($query, $year = NULL) {
-        $now = Carbon::now();
-
-        if(!$year)
-            $year = $now->format('Y');
-
-        return $query->selectRaw("ifnull(round(sum((select km where deleted_at IS NULL and year(performed_at) = $year)*multiplier)), 0) as score")
-            ->leftJoin('activities', 'activities.user_id', 'users.id')
-            ->leftJoin('activity_types', 'activity_types.id', 'activities.type_id')
-            ->orderBy('score', 'DESC')
-            ->orderBy('users.name', 'ASC')
-            ->groupBy('users.id', 'users.name');
-    }
-
-    public function scopeTopListAllTime($query) {
-        return $query->selectRaw("ifnull(round(sum((select km where deleted_at IS NULL)*multiplier)), 0) as score")
-            ->leftJoin('activities', 'activities.user_id', 'users.id')
-            ->leftJoin('activity_types', 'activity_types.id', 'activities.type_id')
-            ->orderBy('score', 'DESC')
-            ->orderBy('users.name', 'ASC')
-            ->groupBy('users.id', 'users.name');
-    }
-
     public function getTotalKmAttribute() {
         return $this->activities()->sum('km');
+    }
+
+    public function totalKmByType($typeId) {
+        return $this->activities()->where('type_id', $typeId)->sum('km');
+    }
+
+    public function scopeXpTopList($query, $month = NULL, $year = NULL) 
+    {
+        $whereParts = [];
+        
+        if($month)
+            $whereParts[] = "month(activities.performed_at) = $month";
+
+        if($year)
+            $whereParts[] = "year(activities.performed_at) = $year";
+
+        $where = count($whereParts) > 0 ? ' where '.implode(' and ', $whereParts) : NULL;
+
+        $query->selectRaw("ifnull(sum((select activities.xp$where)), 0) as user_xp")
+            ->leftJoin('activities', 'activities.user_id', 'users.id')
+            ->orderBy('user_xp', 'DESC')
+            ->orderBy('users.name', 'ASC')
+            ->groupBy('users.id', 'users.name');
+
+
+        return $query;
+    }
+
+    public function scopeActivityTopList($query, $month = NULL, $year = NULL, $activity = NULL) 
+    {
+        $query->selectRaw('ifnull(sum(activities.km), 0) as user_km')
+            ->leftJoin('activities', 'activities.user_id', 'users.id')
+            ->orderBy('user_km', 'DESC')
+            ->orderBy('users.name', 'ASC')
+            ->groupBy('users.id', 'users.name');
+
+        if($month)
+            $query->whereRaw("month(activities.performed_at) = $month");
+
+        if($year)
+            $query->whereRaw("year(activities.performed_at) = $year");
+
+        if($activity)
+            $query->where('type_id', $activity);
+
+        return $query;
     }
 
     public function getInitialsAttribute() {
@@ -108,18 +126,18 @@ class User extends Authenticatable
     }
 
     public function getLevelAttribute() {
-        $score = User::where('users.id', $this->id)->topListAllTime()->first()->score;
+        $xp = self::xp();
         $levels = config('levels');
         $level = -1;
 
         foreach($levels as $id => $details) {
             $level++;
-            if($score < $details[0]) {
+            if($xp < $details[0]) {
 
                 return (object)[
                     'number' => $level,
                     'name' => $levels[$id-1][1],
-                    'score' => $score,
+                    'xp' => $xp,
                     'last_cap' => $levels[$id-1][0],
                     'next_cap' => $levels[$id][0],
                 ];

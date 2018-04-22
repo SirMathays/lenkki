@@ -32,10 +32,7 @@ class ActivityController extends Controller
      * @return Illuminate\View\View
      */
     public function history($year, $month = NULL) {
-        if(!$month)
-            $data = User::select('users.id', 'users.name', 'users.avatar')->topListYearly($year)->get();
-        else
-            $data = User::select('users.id', 'users.name', 'users.avatar')->topListMonthly($month, $year)->get();
+        $data = User::select('users.id', 'users.name')->xpTopList($month, $year)->get();
 
         $years = Activity::years()->get();
 
@@ -106,7 +103,6 @@ class ActivityController extends Controller
     public function get($actId)
     {
         $data = Activity::findOrFail($actId);
-        $data->performed_at_formatted = $data->performed_at->format('j.n.Y');
 
         return $data->toArray();
     }
