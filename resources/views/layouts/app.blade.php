@@ -105,6 +105,8 @@
 
     <!-- Scripts -->
     @auth
+        <script src="{{ asset(asset_version('js/manifest.js')) }}"></script>
+        <script src="{{ asset(asset_version('js/vendor.js')) }}"></script>
         <script src="{{ asset(asset_version('js/app.js')) }}"></script>
     @endauth
 </body>

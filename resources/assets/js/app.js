@@ -7,16 +7,15 @@
 
 require('./bootstrap');
 
+// VUE
 import Vue from 'vue';
 window.Vue = require('vue');
 
+// VUE ROUTER
 import VueRouter from 'vue-router';
- 
 window.Vue.use(VueRouter);
 
-// import VueCountUp from 'vue-countup';
-// Vue.component('vuecountup', VueCountUp);
-
+// OTHER VUE COMPONENTS
 Vue.component('top-list', require('./components/TopList.vue'));
 Vue.component('activity-list', require('./components/ActivityList.vue'));
 Vue.component('user-avatar', require('./components/UserAvatar.vue'));
@@ -29,6 +28,7 @@ Vue.component('award-modal', require('./components/modals/AwardModal.vue'));
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+// VUE APP
 const app = new Vue({
     el: '#app',
     data: {
@@ -60,6 +60,7 @@ const app = new Vue({
     }
 });
 
+// SOME UGLY JQUERY - works though
 $(window).scroll(function () {
     if ($(document).scrollTop() < 30) {
         $('.nav').addClass('faded');

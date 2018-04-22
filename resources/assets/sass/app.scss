@@ -498,11 +498,7 @@ h3 {
 	}
 
 	&.gold {
-		&::before {
-			border-top-color: #FFC107;
-		}
-
-		&::after {
+		&::before, &::after {
 			border-top-color: #FFC107;
 		}
 
@@ -513,11 +509,7 @@ h3 {
 		color: #e58604;
 	}
 	&.silver {
-		&::before {
-			border-top-color: #cacaca;
-		}
-
-		&::after {
+		&::before, &::after {
 			border-top-color: #cacaca;
 		}
 
@@ -528,11 +520,7 @@ h3 {
 		color: #797979;
 	}
 	&.bronze {
-		&::before {
-			border-top-color: #795548;
-		}
-		
-		&::after {
+		&::before, &::after {
 			border-top-color: #795548;
 		}
 		
@@ -541,6 +529,17 @@ h3 {
 		border-color: #795548;
 		text-shadow: 0px 0px 5px #795548;
 		color: #5a4137;
+	}
+	&.platinum {
+		&::before, &::after {
+			border-top-color: #007a8a;
+		}
+		
+		background-color: #00BCD4;
+	    background: radial-gradient(#00BCD4 50%, #007a8a 0%, #00BCD4 75%);
+	    border-color: #007a8a;
+	    text-shadow: 0px 0px 5px #007a8a;
+	    color: #004952;
 	}
 }
 
