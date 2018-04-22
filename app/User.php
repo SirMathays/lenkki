@@ -77,16 +77,16 @@ class User extends Authenticatable
     public function scopeXpTopList($query, $month = NULL, $year = NULL) 
     {
         $whereParts = [];
-        
+
         if($month)
-            $whereParts[] = "month(activities.performed_at) = $month";
+            $whereParts[] = "and month(activities.performed_at) = $month";
 
         if($year)
-            $whereParts[] = "year(activities.performed_at) = $year";
+            $whereParts[] = "and year(activities.performed_at) = $year";
 
-        $where = count($whereParts) > 0 ? ' where '.implode(' and ', $whereParts) : NULL;
+        $where = count($whereParts) > 0 ? implode(' ', $whereParts) : NULL;
 
-        $query->selectRaw("ifnull(sum((select activities.xp$where)), 0) as user_xp")
+        $query->selectRaw("ifnull(sum((select activities.xp where activities.deleted_at IS NULL $where)), 0) as user_xp")
             ->leftJoin('activities', 'activities.user_id', 'users.id')
             ->orderBy('user_xp', 'DESC')
             ->orderBy('users.name', 'ASC')
