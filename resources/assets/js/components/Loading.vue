@@ -20,7 +20,7 @@
         height:100%;
         z-index: 99;
         font-size: 3em;
-        color: white;
+        color: #fff;
     }
 
     .loader {
@@ -93,31 +93,13 @@
     }
 
     @-webkit-keyframes color {
-        0% {
-            stroke: #fff;
-        }
-        40% {
-            stroke: #fff;
-        }
-        66% {
-            stroke: #fff;
-        }
-        80%, 90% {
+        0%,100% {
             stroke: #fff;
         }
     }
 
     @keyframes color {
-        0% {
-            stroke: #fff;
-        }
-        40% {
-            stroke: #fff;
-        }
-        66% {
-            stroke: #fff;
-        }
-        80%, 90% {
+        0%,100% {
             stroke: #fff;
         }
     }

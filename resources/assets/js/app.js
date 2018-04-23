@@ -72,3 +72,14 @@ $(window).scroll(function () {
         $('.nav .profile').removeClass('shadow');
     }
 });
+
+var position = $(window).scrollTop();
+$(window).scroll(function() {
+  var scroll = $(window).scrollTop();
+  if (scroll > position) {
+    console.log("scrolling downwards");
+  } else {
+    console.log("scrolling upwards");
+  }
+  position = scroll;
+});

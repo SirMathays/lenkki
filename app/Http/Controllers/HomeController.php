@@ -43,7 +43,7 @@ class HomeController extends Controller
      */
     public function recentActivities() {
         
-        $data = Activity::orderBy('performed_at', 'DESC')->orderBy('updated_at', 'DESC')->limit(10)->get();
+        $data = Activity::orderBy('performed_at', 'DESC')->orderBy('updated_at', 'DESC')->limit(10)->paginate(10);
 
         return $data;
     }
@@ -56,8 +56,8 @@ class HomeController extends Controller
      * @return object
      */
     public function userActivities($rowId) {
-        
-        $data = Activity::where('user_id', $rowId)->orderBy('performed_at', 'DESC')->orderBy('updated_at', 'DESC')->get();
+
+        $data = Activity::where('user_id', $rowId)->orderBy('performed_at', 'DESC')->orderBy('updated_at', 'DESC')->paginate(10);
 
         return $data;
     }

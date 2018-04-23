@@ -8,13 +8,13 @@
                 <span class="xp pull-right">+{{ activity.xp }} xp</span>
             </h3>
             <div class="col-md-12 form-group">
-                <p><b>Suorittaja:</b> {{ user.name }}</a></p>
+                <p><b>Suorittaja:</b> <a :href="'/user/' + user.id">{{ user.name }}</a></p>
                 <p><b>Pituus:</b> {{ activity.km }}km</p>
                 <p><b>Kesto:</b> {{ activity.duration }}min</p>
             </div>
             <div v-if="activity.user_has_rights" class="col-md-12 text-right">
                 <a v-bind:href="'/activity/edit/' + activity.id" class="btn btn-primary">
-                    <i class="fa fa-pencil"></i> Muokkaa
+                    Muokkaa
                 </a>
             </div>
 		</div>

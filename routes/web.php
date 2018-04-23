@@ -37,7 +37,7 @@ Route::middleware('auth')->group(function() {
 
 	Route::prefix('user')->group(function() {
 		Route::get('/settings', 'UserController@edit')->name('userSettings');
-		Route::get('/{rowId}', 'UserController@profilePage')->name('profile');
+		Route::get('/{rowId}', 'UserController@show')->name('profile');
 		Route::post('/save', 'UserController@save');
 	});
 

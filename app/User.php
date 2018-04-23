@@ -16,8 +16,8 @@ class User extends Authenticatable
 
     protected $appends = [
         'avatar_url',
+        'initials',
         'level',
-        'initials'
     ];
 
     /**
@@ -40,6 +40,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'strava_id',
     ];
 
     public function activities() {

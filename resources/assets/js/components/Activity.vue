@@ -9,17 +9,6 @@
     </a>
 </template>
 
-<style>
-    .row-child {
-        display: flex;
-        align-items: center;
-    }
-
-    .row-child > *+* {
-        margin-left: 25px;
-    }
-</style>
-
 <script>
     import UserAvatar from './UserAvatar.vue';
 

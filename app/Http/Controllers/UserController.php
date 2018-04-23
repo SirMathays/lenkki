@@ -48,7 +48,7 @@ class UserController extends Controller
      * @param  int  $userId
      * @return Illuminate\View\View
      */
-    public function profilePage($userId) 
+    public function show($userId) 
     {
     	$user = User::findOrFail($userId);
 

@@ -118,7 +118,7 @@
                     <label class="btn btn-primary" for="image">
                         <input id="image" type="file" name="image" style="display:none" 
                             onchange="$('#upload-file-info').html(this.files[0].name)">
-                            <i class="fa fa-upload"></i> Lataa
+                            Lataa
                     </label>
                     <span class='label label-info' id="upload-file-info"></span>
 
@@ -135,11 +135,11 @@
             <div class="form-group">
                 <div class="col-md-6 col-md-offset-4">
                     <button type="submit" class="btn btn-primary">
-                        <i class="fa fa-save"></i> @lang('ui.save')
+                        @lang('ui.save')
                     </button>
                     @if($edit)
                         <button type="submit" class="btn btn-danger" form="delete">
-                            <i class="fa fa-trash"></i> @lang('ui.delete')
+                            @lang('ui.delete')
                         </button>
                     @endif
                 </div>

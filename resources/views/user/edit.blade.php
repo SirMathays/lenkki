@@ -3,10 +3,10 @@
 @section('content')
 <div class="container compact">
     <div class="panel">
-        <form action="{{ action('ActivityController@stravaSubscription') }}" method="POST">
+        {{-- <form action="{{ action('ActivityController@stravaSubscription') }}" method="POST">
             {{ csrf_field() }}
             <button type="submit">save</button>
-        </form>
+        </form> --}}
         <form action="{{ action('UserController@save') }}" method="POST" class="form-horizontal" enctype="multipart/form-data">
     		{{ csrf_field() }}
 
@@ -60,7 +60,7 @@
                     <label class="btn btn-primary" for="avatar">
                         <input id="avatar" type="file" name="avatar" style="display:none" 
                             onchange="$('#upload-file-info').html(this.files[0].name)">
-                            <i class="fa fa-upload"></i> Lataa
+                            Lataa
                     </label>
                     <span class='label label-info' id="upload-file-info"></span>
 
@@ -76,7 +76,7 @@
                 <div class="col-md-6 col-md-offset-4">
                     <hr>
                     <button type="submit" class="btn btn-primary">
-                        <i class="fa fa-save"></i> @lang('ui.save')
+                        @lang('ui.save')
                     </button>
                 </div>
             </div>

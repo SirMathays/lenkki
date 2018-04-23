@@ -19,7 +19,6 @@ class Activity extends Model
     ];
     
     protected $appends = [
-        'avatar_url',
         'image_url',
         'user_has_rights',
         'activity_name',
@@ -54,10 +53,6 @@ class Activity extends Model
 
     public function activityType() {
         return $this->belongsTo(ActivityType::class, 'type_id');
-    }
-
-    public function getAvatarUrlAttribute() {
-        return $this->user->avatar_url;
     }
 
     public static function season() {
