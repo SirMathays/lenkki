@@ -38,7 +38,7 @@ Route::middleware('auth')->group(function() {
 	Route::prefix('user')->group(function() {
 		Route::get('/settings', 'UserController@edit')->name('userSettings');
 		Route::get('/{rowId}', 'UserController@profilePage')->name('profile');
-		Route::post('/save', 'UserController@save');
+		Route::post('/save/{rowId}', 'UserController@save');
 	});
 
 	// , 'namespace' => 'Api\V1', 'as' => 'api.'
