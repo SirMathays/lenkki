@@ -1,7 +1,7 @@
 <template>
     <div class="list log">
-        <activity-loading v-for="n in 3" :key="n" v-if="loading"></activity-loading>
-    	<activity v-for="row, index in rows" 
+        <activity-loading v-for="n in 10" :key="n" v-if="loading"></activity-loading>
+    	<activity v-if="!loading" v-for="row, index in rows" 
             @show="$emit('show-activity', row.id)"
             :key="row.id" 
             :id="row.id" 
