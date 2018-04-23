@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function() {
 		Route::get('/edit/{actId}', 'ActivityController@edit')->name('editActivity');
 		Route::get('/{actId}', 'ActivityController@show')->name('showActivity');
 		Route::post('/save', 'ActivityController@save');
-		Route::post('/delete', 'ActivityController@delete');
+		Route::post('/delete/{rowId}', 'ActivityController@delete');
 	});
 
 	Route::get('/history/{year}/{month?}', 'ActivityController@history')->name('history');
@@ -38,7 +38,7 @@ Route::middleware('auth')->group(function() {
 	Route::prefix('user')->group(function() {
 		Route::get('/settings', 'UserController@edit')->name('userSettings');
 		Route::get('/{rowId}', 'UserController@profilePage')->name('profile');
-		Route::post('/save/{rowId}', 'UserController@save');
+		Route::post('/save', 'UserController@save');
 	});
 
 	// , 'namespace' => 'Api\V1', 'as' => 'api.'
