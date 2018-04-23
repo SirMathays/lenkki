@@ -97,7 +97,7 @@
                 </div>
 
                 <div class="links">
-                    <p>Lenkki V0.5</p>
+                    <p>Lenkki v{{ env('APP_VERSION') }}</p>
                 </div>
             </div>
         </div>
