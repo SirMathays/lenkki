@@ -19,6 +19,7 @@ window.Vue.use(VueRouter);
 Vue.component('top-list', require('./components/TopList.vue'));
 Vue.component('activity-list', require('./components/ActivityList.vue'));
 Vue.component('user-avatar', require('./components/UserAvatar.vue'));
+Vue.component('nav-menu', require('./components/NavMenu.vue'));
 Vue.component('activity-modal', require('./components/modals/ActivityModal.vue'));
 Vue.component('award-modal', require('./components/modals/AwardModal.vue'));
 
@@ -34,6 +35,7 @@ const app = new Vue({
     data: {
         activeActivity: false,
         unseenAwards: false,
+        showMenu: false,
     },
     methods: {
         showActivity: function(rowId) {

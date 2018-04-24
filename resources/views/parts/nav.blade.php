@@ -20,15 +20,15 @@
                 <i class="fa fa-plus"></i>
             </a>
             <div class="profile-nav">
-                <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" class="profile shadow">
+                <span class="profile shadow" v-on:click="showMenu = !showMenu">
                     @if(Auth::user()->avatar_url)
                     <img src="{{ Auth::user()->avatar_url }}">
                     @else
                     <span class="initials">{{ Auth::user()->initials }}</span>
                     @endif
                     <div class="level">{{ Auth::user()->level->number }}</div>
-                </a>
-                <ul class="dropdown-menu">
+                </span>
+                <nav-menu v-if="showMenu">
                     <li>
                         <a href="{{ route('profile', Auth::id()) }}">
                             <i class="fa fa-fw fa-user"></i>
@@ -59,7 +59,7 @@
                             {{ csrf_field() }}
                         </form>
                     </li>
-                </ul>
+                </nav-menu>
             </div>
         </div>
     </nav>
