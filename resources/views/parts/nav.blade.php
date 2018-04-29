@@ -19,14 +19,19 @@
             </a>
         </div>
         <div class="nav-part nav-center">
-            <a class="link" href="{{ route('home') }}">Etusivu</a>
-            <a class="link" href="{{ route('history', ['month' => Carbon\Carbon::now()->format('m'), 'year' => Carbon\Carbon::now()->format('Y')]) }}">@lang('ui.history')</a>
-            <a class="link" href="#">Lajitilastot (tulossa)</a>
+            @foreach(links(Auth::id())->nav as $name => $item)
+                <a class="link" href="{{ $item->link }}">
+                    <i class="fa fa-fw fa-{{ $item->icon }}"></i>
+                    @lang("ui.$name")
+                </a>
+            @endforeach
         </div>
         <div class="nav-part nav-right">
-            <a href="{{ route('newActivity') }}" class="button shadow circle-button">
-                <i class="fa fa-plus"></i>
-            </a>
+            @foreach(links(Auth::id())->buttons as $name => $item)
+                <a href="{{ $item->link }}" class="button shadow circle-button">
+                    <i class="fa fa-{{ $item->icon }}"></i>
+                </a>
+            @endforeach
             <div class="profile-nav">
                 <span class="profile shadow" v-on:click="showMenu = !showMenu">
                     @if(Auth::user()->avatar_url)
@@ -37,28 +42,20 @@
                     <div class="level">{{ Auth::user()->level->number }}</div>
                 </span>
                 <nav-menu v-if="showMenu">
-                    <li>
-                        <a href="{{ route('profile', Auth::id()) }}">
-                            <i class="fa fa-fw fa-user"></i>
-                            @lang('ui.profile')
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('userSettings') }}">
-                            <i class="fa fa-fw fa-cog"></i>
-                            @lang('ui.settings')
-                        </a>
-                    </li>
+                    @foreach(links(Auth::id())->user as $name => $item)
+                        <li>
+                            <a href="{{ $item->link }}">
+                                <i class="fa fa-{{ $item->icon }}"></i>
+                                @lang("ui.$name")
+                            </a>
+                        </li>
+                    @endforeach
                     <li role="separator" class="divider"></li>
                     <li>
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                        <a onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                             <i class="fa fa-fw fa-sign-out"></i>
                             @lang('ui.logout')
                         </a>
-
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            {{ csrf_field() }}
-                        </form>
                     </li>
                 </nav-menu>
             </div>
@@ -80,53 +77,27 @@
             </span>
         </div>
         <ul>
+            @foreach(links(Auth::id()) as $groupName => $groupItems)
+                @foreach($groupItems as $name => $items)
+                <li>
+                    <a href="{{ $items->link }}">
+                        <i class="fa fa-fw fa-{{ $items->icon }}"></i>
+                        @lang("ui.$name")
+                    </a>
+                </li>
+                @endforeach
+                <hr>
+            @endforeach
             <li>
-                <a href="{{ route('newActivity') }}">
-                    <i class="fa fa-fw fa-plus"></i>
-                    Uusi aktiviteetti
-                </a>
-            </li>
-            <hr>
-            <li>
-                <a class="link" href="{{ route('home') }}">
-                    <i class="fa fa-fw fa-home"></i>
-                    Etusivu
-                </a>
-            </li>
-            <li>
-                <a class="link" href="{{ route('history', ['month' => Carbon\Carbon::now()->format('m'), 'year' => Carbon\Carbon::now()->format('Y')]) }}">
-                    <i class="fa fa-fw fa-calendar"></i>
-                    @lang('ui.history')
-                </a>
-            </li>
-            <li>
-                <a class="link" href="#">
-                    <i class="fa fa-fw fa-bookmark"></i>
-                    Lajitilastot (tulossa)
-                </a>
-            </li>
-            <hr>
-            <li>
-                <a href="{{ route('profile', Auth::id()) }}">
-                    <i class="fa fa-fw fa-user"></i>
-                    @lang('ui.profile')
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('userSettings') }}">
-                    <i class="fa fa-fw fa-cog"></i>
-                    @lang('ui.settings')
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                <a onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                     <i class="fa fa-fw fa-sign-out"></i>
                     @lang('ui.logout')
                 </a>
             </li>
         </ul>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-            {{ csrf_field() }}
-        </form>
     </nav-drawer>
+
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        {{ csrf_field() }}
+    </form>
 @endguest

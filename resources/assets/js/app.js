@@ -34,6 +34,7 @@ Vue.component('award-modal', require('./components/modals/AwardModal.vue'));
 const app = new Vue({
     el: '#app',
     data: {
+        loading: true,
         activeActivity: false,
         unseenAwards: false,
         showMenu: false,
@@ -59,6 +60,7 @@ const app = new Vue({
         }
     },
     mounted: function() {
+        this.loading = false;
         this.checkMedals();
     }
 });

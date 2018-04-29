@@ -25,7 +25,7 @@
 </head>
 
 <body>
-    <div id="app">
+    <div id="app" v-if="!loading">
         @auth
             <activity-modal :id="activeActivity" v-if="activeActivity" @close="activeActivity = false"></activity-modal>
             <award-modal v-if="unseenAwards" @close="unseenAwards = false"></award-modal>

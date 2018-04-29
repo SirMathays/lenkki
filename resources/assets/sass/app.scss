@@ -346,26 +346,26 @@ a {
 	width: 275px;
 	background-color: $navbar-default-bg;
 	box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.5);
-	overflow-y: scroll;
+	overflow-y: auto;
 
 	@media screen and (max-width: 275px) {
 		width: 100%;
 	}
 
 	.profile-box {
-		height: 146px;
 		width: 100%;
 		background: linear-gradient(45deg, #3b59b5, #4A90E2);
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-end;
-		padding: 10px 15px;
+		padding: 24px 10px 10px 15px;
 		margin-bottom: 5px;
 
 		color: white;
 
 		.profile {
 		    width: 75px;
+		    height: 75px;
 		}
 	}
 
