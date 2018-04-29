@@ -29,7 +29,7 @@
                     <span class="link" v-on:click="showTypes = !showTypes">
                         <i class="fa fa-fw fa-{{ $item->icon }}"></i>
                         @lang("ui.$name")
-                        <nav-menu v-if="showTypes">
+                        <nav-menu v-if="showTypes" v-cloak>
                             @foreach($item->options as $name => $id)
                                 <li>
                                     <a href="{{ route('activity.top-list', $id) }}">
@@ -57,7 +57,7 @@
                     @endif
                     <div class="level">{{ Auth::user()->level->number }}</div>
                 </span>
-                <nav-menu v-if="showMenu">
+                <nav-menu v-if="showMenu" v-cloak>
                     @foreach(links(Auth::id())->user as $name => $item)
                         <li>
                             <a href="{{ $item->link }}">
@@ -77,7 +77,7 @@
             </div>
         </div>
     </nav>
-    <nav-drawer v-if="showMenu" v-on:close="showMenu = !showMenu">
+    <nav-drawer v-if="showMenu" v-on:close="showMenu = !showMenu" v-cloak>
         <div class="profile-box">
             <div class="profile-nav">
                 <span class="profile shadow">
@@ -95,20 +95,21 @@
         </div>
         <ul>
             @foreach(links(Auth::id()) as $groupName => $groupItems)
-                <li class="label nav-label">@lang("ui.$groupName.self")</li>
+                <li><span>@lang("ui.$groupName.self")</span></li>
                 @foreach($groupItems as $name => $items)
                     @if(empty($items->options))
                         <li>
                             <a href="{{ $items->link }}">
-                                <i class="fa fa-fw fa-{{ $items->icon }}"></i>
-                                @lang("ui.$name")
+                                <i class="fa fa-fw fa-{{ $items->icon }}"></i><span>@lang("ui.$name")</span>
                             </a>
                         </li>
                     @else
-                        <li class="label nav-label">@lang('ui.activities')</li>
+                        <li><span>@lang('ui.activities')</span></li>
                         @foreach($items->options as $name => $id)
                             <li>
-                                <a href="{{ route('activity.top-list', $id) }}">{{ $name }}</a>
+                                <a href="{{ route('activity.top-list', $id) }}">
+                                    <span>{{ $name }}</span>
+                                </a>
                             </li>
                         @endforeach
                     @endif
@@ -116,8 +117,7 @@
             @endforeach
             <li>
                 <a onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                    <i class="fa fa-fw fa-sign-out"></i>
-                    @lang('ui.logout')
+                    <i class="fa fa-fw fa-sign-out"></i><span>@lang('ui.logout')</span>
                 </a>
             </li>
         </ul>

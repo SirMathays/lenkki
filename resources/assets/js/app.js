@@ -34,7 +34,6 @@ Vue.component('award-modal', require('./components/modals/AwardModal.vue'));
 const app = new Vue({
     el: '#app',
     data: {
-        loading: true,
         activeActivity: false,
         unseenAwards: false,
         showMenu: false,
@@ -60,6 +59,18 @@ const app = new Vue({
                 });
         }
     },
+    watch: {
+        showMenu: function(val) {
+            if(this.showMenu) {
+                this.showTypes = false;
+            }
+        },
+        showTypes: function(val) {
+            if(this.showTypes) {
+                this.showMenu = false;
+            }
+        },
+    },
     mounted: function() {
         this.loading = false;
         this.checkMedals();
@@ -81,11 +92,11 @@ $(window).scroll(function () {
 
 var position = $(window).scrollTop();
 $(window).scroll(function() {
-  var scroll = $(window).scrollTop();
-  if (scroll > position) {
-    console.log("scrolling downwards");
-  } else {
-    console.log("scrolling upwards");
-  }
-  position = scroll;
+    var scroll = $(window).scrollTop();
+    if (scroll > position) {
+        console.log("scrolling downwards");
+    } else {
+        console.log("scrolling upwards");
+    }
+    position = scroll;
 });

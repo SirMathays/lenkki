@@ -17,6 +17,10 @@ body {
 	margin-top: 100px;
 }
 
+[v-cloak] {
+	display: none;
+}
+
 a {
 	&:hover {
 		cursor: pointer;
@@ -387,17 +391,33 @@ a {
 		padding-left: 0;
 
 		li {
-			a {
+			& > span, a {
 				display: block;
-				color: $text-color;
 				padding: 10px 15px;
-
-				&:hover {
-					background-color: rgba(0,0,0,0.1);
-				}
 
 				.fa-fw {
 					text-align: left;
+					width: 30px;
+				}
+			}
+			
+			& > span, i {
+				color: $brand-primary;
+			}
+
+			& > span {
+				font-weight: 600;
+			}
+
+			a {
+				color: #000;
+
+				& > span:first-child {
+					margin-left: 30px;
+				}
+
+				&:hover {
+					background-color: rgba(0,0,0,0.1);
 				}
 			}
 		}
@@ -417,6 +437,8 @@ footer {
 	display: block;
     overflow: hidden;
     background: skyblue;
+    width: 40px;
+    height: 40px;
 
     &.lg {
     	width: 150px;

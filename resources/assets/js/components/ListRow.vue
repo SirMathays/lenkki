@@ -3,7 +3,7 @@
         <user-avatar :link="true" :key="id" :id="id" :initials="initials" :avatar="avatar"></user-avatar>
         <div class="row-progress-bar" v-bind:class="{ inactive: score <= 0 }">
             <div class="row-progress" v-bind:style="{ width: comparison }">
-                <span v-if="score > 0" class="progress-amount">{{ score }}xp</span>
+                <span v-if="score > 0" class="progress-amount">{{ score }}{{ type }}</span>
             </div>
         </div>
         
@@ -33,6 +33,10 @@
             },
             score: {
                 required: true
+            },
+            type: {
+                required: false,
+                default: 'xp',
             }
         },
         components: {

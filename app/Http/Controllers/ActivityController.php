@@ -37,6 +37,7 @@ class ActivityController extends Controller
         $type = ActivityType::findOrFail($typeId);
 
         return view('activity.top-list', [
+            'type' => $type,
             'typeId' => $type->id,
         ]);
     }

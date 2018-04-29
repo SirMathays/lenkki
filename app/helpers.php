@@ -42,7 +42,7 @@ function links($userId) {
             'activity-list' => (object)[
                 'link' => '#',
                 'icon' => 'bookmark',
-                'options' => (object)App\ActivityType::pluck('id', 'name')->toArray(),
+                'options' => (object)App\ActivityType::orderBy('name')->pluck('id', 'name')->toArray(),
             ],
         ],
         'user' => (object)[
