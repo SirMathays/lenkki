@@ -87,9 +87,9 @@ class User extends Authenticatable
 
         $where = count($whereParts) > 0 ? implode(' ', $whereParts) : NULL;
 
-        $query->selectRaw("ifnull(sum((select activities.xp where activities.deleted_at IS NULL $where)), 0) as user_xp")
+        $query->selectRaw("ifnull(sum((select activities.xp where activities.deleted_at IS NULL $where)), 0) as user_score")
             ->leftJoin('activities', 'activities.user_id', 'users.id')
-            ->orderBy('user_xp', 'DESC')
+            ->orderBy('user_score', 'DESC')
             ->orderBy('users.name', 'ASC')
             ->groupBy('users.id', 'users.name');
 
@@ -97,22 +97,25 @@ class User extends Authenticatable
         return $query;
     }
 
-    public function scopeActivityTopList($query, $month = NULL, $year = NULL, $activity = NULL) 
+    public function scopeActivityTopList($query, $activity, $month = NULL, $year = NULL) 
     {
-        $query->selectRaw('ifnull(sum(activities.km), 0) as user_km')
-            ->leftJoin('activities', 'activities.user_id', 'users.id')
-            ->orderBy('user_km', 'DESC')
-            ->orderBy('users.name', 'ASC')
-            ->groupBy('users.id', 'users.name');
+        $whereParts = [];
+
+        $whereParts[] = "and activities.type_id = $activity";
 
         if($month)
-            $query->whereRaw("month(activities.performed_at) = $month");
+            $whereParts[] = "and month(activities.performed_at) = $month";
 
         if($year)
-            $query->whereRaw("year(activities.performed_at) = $year");
+            $whereParts[] = "and year(activities.performed_at) = $year";
 
-        if($activity)
-            $query->where('type_id', $activity);
+        $where = count($whereParts) > 0 ? implode(' ', $whereParts) : NULL;
+
+        $query->selectRaw("ifnull(sum((select activities.km where activities.deleted_at IS NULL $where)), 0) as user_score")
+            ->leftJoin('activities', 'activities.user_id', 'users.id')
+            ->orderBy('user_score', 'DESC')
+            ->orderBy('users.name', 'ASC')
+            ->groupBy('users.id', 'users.name');
 
         return $query;
     }

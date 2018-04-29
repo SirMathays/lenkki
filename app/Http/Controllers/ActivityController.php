@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
+use App\ActivityType;
 use App\Activity;
 use App\User;
 
@@ -21,6 +23,22 @@ class ActivityController extends Controller
     public function newActivity() 
     {
     	return view('activity.new');
+    }
+
+    /**
+     * Show the activity top list dashboard.
+     * @author Matti
+     *
+     * @param  int  $typeId
+     * @return Illuminate\Http\Response
+     */
+    public function activityTopList($typeId)
+    {
+        $type = ActivityType::findOrFail($typeId);
+
+        return view('activity.top-list', [
+            'typeId' => $type->id,
+        ]);
     }
 
     /**

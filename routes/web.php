@@ -32,6 +32,8 @@ Route::middleware('auth')->group(function() {
 		Route::post('/delete/{rowId}', 'ActivityController@delete');
 	});
 
+	Route::get('/activity/list/{typeId}', 'ActivityController@activityTopList')->name('activity.top-list');
+
 	Route::get('/history/{year}/{month?}', 'ActivityController@history')->name('history');
 	Route::post('/history/filter', 'ActivityController@historyFilter');
 
@@ -45,6 +47,7 @@ Route::middleware('auth')->group(function() {
 	Route::group(['prefix' => '/v1'], function () {
 		Route::prefix('lists')->group(function() {
 		    Route::get('/xp-top-list/{limit?}/{year?}/{month?}', 'HomeController@xpTopList');
+		    Route::get('/activity-top-list/{activityType}/{limit?}/{year?}/{month?}', 'HomeController@activityTopList');
 		    Route::get('/recentActivities', 'HomeController@recentActivities');
 		});
 

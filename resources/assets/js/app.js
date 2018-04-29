@@ -38,6 +38,7 @@ const app = new Vue({
         activeActivity: false,
         unseenAwards: false,
         showMenu: false,
+        showTypes: false,
     },
     methods: {
         showActivity: function(rowId) {

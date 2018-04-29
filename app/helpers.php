@@ -35,13 +35,14 @@ function links($userId) {
                 'link' => route('home'),
                 'icon' => 'home'
             ],
-            'activities' => (object)[
-                'link' => '#',
-                'icon' => 'bookmark',
-            ],
             'history' => (object)[
                 'link' => route('history', ['month' => Carbon\Carbon::now()->format('m'), 'year' => Carbon\Carbon::now()->format('Y')]),
                 'icon' => 'calendar'
+            ],
+            'activity-list' => (object)[
+                'link' => '#',
+                'icon' => 'bookmark',
+                'options' => (object)App\ActivityType::pluck('id', 'name')->toArray(),
             ],
         ],
         'user' => (object)[

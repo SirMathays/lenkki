@@ -1,6 +1,7 @@
 <?php 
 	return [
-		'activities' => 'Lajitilastot (pian saatavilla)',
+		'activities' => 'Lajit',
+		'activity-list' => 'Lajitilastot',
 		'avatar' => 'Profiilikuva',
 		'confirm_password' => 'Vahvista salasana',
 		'email' => 'Sähköposti',
@@ -11,7 +12,7 @@
 		'login' => 'Kirjaudu sisään',
 		'logout' => 'Kirjaudu ulos',
 		'name' => 'Nimi',
-		'new-activity' => 'Uusi aktiviteetti',
+		'new-activity' => 'Aktiviteetti',
 		'password' => 'Salasana',
 		'profile' => 'Profiili',
 		'register' => 'Rekisteröidy',
@@ -28,7 +29,16 @@
 			'performed_at' => 'Suorituspäivä',
 		],
 
+		'buttons' => [
+			'self' => 'Lisää',
+		],
+
+		'nav' => [
+			'self' => 'Näkymät',
+		],
+
 		'user' => [
+			'self' => 'Käyttäjä',
 			'edit' => 'Muokkaa profiilia',
 		],
 

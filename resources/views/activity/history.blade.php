@@ -51,7 +51,7 @@
 					<td>
 						<a href="{{ route('profile', $user->id) }}">{{ $user->name }}</a>
 					</td>
-					<td>{{ $user->user_xp }}</td>
+					<td>{{ $user->user_score }}</td>
 					<td>
 						@php
 							$award = App\Award::userAndName($user->id, implode('-', [$month, $year]))->first();

@@ -6,7 +6,7 @@
     <div class="panel transparent">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-                <top-list></top-list>
+                <top-list :list="'xp-top-list'"></top-list>
             </div>
         </div>
     </div>

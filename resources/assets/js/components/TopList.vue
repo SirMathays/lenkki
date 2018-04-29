@@ -14,7 +14,7 @@
                 :initials="row.initials" 
                 :avatar="row.avatar_url" 
                 :comparison="row.comparison" 
-                :score="row.user_xp"></list-row>
+                :score="row.user_score"></list-row>
             <div class="more">
                 <a @click="limit == 3 ? limit = 0 : limit = 3">
                     <i class="fa fa-chevron-down" v-bind:class="{ 'fa-rotate-180': limit == 0  }"></i>
@@ -63,6 +63,16 @@
                 limit: 3
             }
         },
+        props: {
+            list: {
+                required: true,
+                type: String,
+            },
+            activityType: {
+                required: false,
+                type: Number,
+            }
+        },
         components: {
             'list-row': ListRow,
             'loading-el': Loading
@@ -83,6 +93,11 @@
                 var app = this;
                 app.loading = true;
 
+                var activityUrl = "/";
+                if(app.activityType) {
+                    activityUrl = "/"+ app.activityType + "/"
+                }
+
                 var dateUrl = '/';
                 var month = app.date.getMonth()+1;
                 var year = app.date.getFullYear();
@@ -93,9 +108,9 @@
                     dateUrl = '/'+year;
                 }
 
-                axios.get('/v1/lists/xp-top-list/' + app.limit + dateUrl)
+                axios.get('/v1/lists/' + app.list + activityUrl + app.limit + dateUrl)
                     .then(function (resp) {
-                        app.rows = resp.data;
+                        app.rows = resp.data.users;
                         app.loading = false;
                     })
                     .catch(function (resp) {

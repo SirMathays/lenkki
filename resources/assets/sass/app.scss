@@ -246,6 +246,7 @@ a {
 		font-size: 1.2em;
 		color: $brand-primary;
 		cursor: pointer;
+		position: relative;
 	}
 
 	.nav-part {
@@ -299,25 +300,25 @@ a {
 			height: 50px;
 			width: 50px;
 		}
-
-		.dropdown-menu {
-			right: 0;
-		    left: unset;
-		    border: unset;
-		    margin-top: 5px;
-			display: block;
-			
-			&::after {
-			    content: " ";
-			    position: absolute;
-			    bottom: 100%;
-			    right: 20px;
-			    border-width: 5px;
-			    border-style: solid;
-			    border-color: transparent transparent white transparent;
-		    }
-		}
 	}
+}
+
+.dropdown-menu {
+	right: 0;
+	left: unset;
+    border: unset;
+    margin-top: 5px;
+	display: block;
+	
+	&::after {
+	    content: " ";
+	    position: absolute;
+	    bottom: 100%;
+	    right: 20px;
+	    border-width: 5px;
+	    border-style: solid;
+	    border-color: transparent transparent white transparent;
+    }
 }
 
 .profile-nav {
@@ -336,6 +337,13 @@ a {
 	@media screen and (min-width: 769px) {
 		display: none;
 	}
+}
+
+.nav-label {
+	color: $text-color;
+	margin-top: 10px;
+	display: block;
+	text-align: left;
 }
 
 .nav-drawer {
