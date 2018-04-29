@@ -7,10 +7,6 @@
 </template>
 
 <style>
-	.dropdown-menu {
-		display: block;
-	}
-
 	/* ANIMATION */
 	.fade-enter-active,
 	.fade-leave-active {

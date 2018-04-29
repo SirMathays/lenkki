@@ -214,7 +214,7 @@ a {
 
 .nav {
 	position: fixed;
-	padding: 15px 0;
+	padding: 10px 0;
 	margin-top: -100px;
 	width: 100%;
 	z-index: 99;
@@ -235,34 +235,69 @@ a {
 	    svg path {
     		stroke: white;
 		}
+
+		.link {
+			color: white;
+		}
+	}
+
+	.link {
+		padding: 0 10px;
+		font-size: 1.2em;
+		color: $brand-primary;
+		cursor: pointer;
 	}
 
 	.nav-part {
-		width: 50%;
 		padding: 0 15px;
 		display: flex;
 		align-items: center;
+		height: 50px;
 
 		& > *+* {
 			margin-left: 10px;
 		}
 
+		&.nav-burger {
+			display: none;
+
+			@media screen and (max-width: 768px) {
+				display: flex;
+			}
+		}
+
 		&.nav-left {
+			width: 20%;
 			justify-content: flex-start;
+
+			@media screen and (max-width: 768px) {
+				display: none;
+			}
+		}
+
+		&.nav-center {
+			width: 60%;
+			justify-content: center;
+
+			@media screen and (max-width: 768px) {
+				display: none;
+			}
 		}
 
 		&.nav-right {
+			width: 20%;
 			justify-content: flex-end;
+
+			@media screen and (max-width: 768px) {
+				display: none;
+			}
 		}
 	}
 
-
 	.profile-nav {
-		position: relative;
-
 		.profile {
-			width: 50px;
 			height: 50px;
+			width: 50px;
 		}
 
 		.dropdown-menu {
@@ -270,6 +305,7 @@ a {
 		    left: unset;
 		    border: unset;
 		    margin-top: 5px;
+			display: block;
 			
 			&::after {
 			    content: " ";
@@ -280,6 +316,82 @@ a {
 			    border-style: solid;
 			    border-color: transparent transparent white transparent;
 		    }
+		}
+	}
+}
+
+.profile-nav {
+	position: relative;
+}
+
+.nav-drawer-container {
+	position: fixed;
+	z-index: 9998;
+	top: 0;
+	left: 0;
+	width: 200%;
+	height: 100%;
+	background: linear-gradient(to right, rgba(0, 0, 0, .5), transparent);
+
+	@media screen and (min-width: 769px) {
+		display: none;
+	}
+}
+
+.nav-drawer {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 275px;
+	background-color: $navbar-default-bg;
+	box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.5);
+	overflow-y: scroll;
+
+	@media screen and (max-width: 275px) {
+		width: 100%;
+	}
+
+	.profile-box {
+		height: 146px;
+		width: 100%;
+		background: linear-gradient(45deg, #3b59b5, #4A90E2);
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		padding: 10px 15px;
+		margin-bottom: 5px;
+
+		color: white;
+
+		.profile {
+		    width: 75px;
+		}
+	}
+
+	hr {
+		margin: 5px 0;
+	}
+
+	ul {
+		list-style: none;
+		display: block;
+		padding-left: 0;
+
+		li {
+			a {
+				display: block;
+				color: $text-color;
+				padding: 10px 15px;
+
+				&:hover {
+					background-color: rgba(0,0,0,0.1);
+				}
+
+				.fa-fw {
+					text-align: left;
+				}
+			}
 		}
 	}
 }
