@@ -72,6 +72,32 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            .content {
+                position: relative;
+                width: 500px;
+                text-align: center;
+            }
+
+            @media (max-width: 500px) {
+                .content {
+                    width: 100%;
+                }
+            }
+
+            .changelog {
+                position: absolute;
+                width: 100%;
+                margin-top: 35px;
+                top: 100%;
+                left: 0;
+                text-align: left;
+                border-top: 1px #636b6f solid;
+            }
+
+            .changelog-content {
+                padding: 0 10px;
+            }
         </style>
     </head>
     <body>
@@ -99,7 +125,15 @@
                 <div class="links">
                     <p>Lenkki v{{ env('APP_VERSION') }}</p>
                 </div>
+
+                <div class="changelog">
+                    <div class="changelog-content">
+                        <h1>Changelog</h1>
+                        @parsedown(file_get_contents(base_path('/changelog.md')))
+                    </div>
+                </div>
             </div>
+            
         </div>
     </body>
 </html>
