@@ -214,6 +214,22 @@ a {
     &:focus {
     	color: white;
     }
+
+    &.nav-button {
+		position: fixed;
+		bottom: 40px;
+		right: 40px;
+		padding: 0;
+		width: 60px;
+		height: 60px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		@media screen and (min-width:768px) {
+			display: none;
+		}
+    }
 }
 
 .nav {
@@ -307,6 +323,14 @@ a {
 	}
 }
 
+.hide-up {
+	transform: translateY(-100%);
+}
+
+.hide-down {
+	transform: scale(0);
+}
+
 .dropdown-menu {
 	right: 0;
 	left: unset;
@@ -355,12 +379,12 @@ a {
 	top: 0;
 	left: 0;
 	height: 100%;
-	width: 275px;
+	width: 314px;
 	background-color: $navbar-default-bg;
 	box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.5);
 	overflow-y: auto;
 
-	@media screen and (max-width: 275px) {
+	@media screen and (max-width: 314px) {
 		width: 100%;
 	}
 
@@ -389,15 +413,16 @@ a {
 		list-style: none;
 		display: block;
 		padding-left: 0;
+		font-weight: 600;
 
 		li {
 			& > span, a {
 				display: block;
-				padding: 10px 15px;
+				padding: 14px 18px;
 
 				.fa-fw {
 					text-align: left;
-					width: 30px;
+					width: 50px;
 				}
 			}
 			
@@ -405,15 +430,11 @@ a {
 				color: $brand-primary;
 			}
 
-			& > span {
-				font-weight: 600;
-			}
-
 			a {
 				color: #000;
 
 				& > span:first-child {
-					margin-left: 30px;
+					margin-left: 50px;
 				}
 
 				&:hover {

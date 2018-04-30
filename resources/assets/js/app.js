@@ -94,9 +94,11 @@ var position = $(window).scrollTop();
 $(window).scroll(function() {
     var scroll = $(window).scrollTop();
     if (scroll > position) {
-        console.log("scrolling downwards");
+        $('.nav').addClass('hide-up');
+        $('.nav-button').addClass('hide-down');
     } else {
-        console.log("scrolling upwards");
+        $('.nav').removeClass('hide-up');
+        $('.nav-button').removeClass('hide-down');
     }
     position = scroll;
 });

@@ -46,7 +46,7 @@
             }
 
             .top-right {
-                position: absolute;
+                position: fixed;
                 right: 10px;
                 top: 18px;
             }
@@ -129,7 +129,7 @@
                 <div class="changelog">
                     <div class="changelog-content">
                         <h1>Changelog</h1>
-                        @parsedown(file_get_contents(base_path('/changelog.md')))
+                        {!! parsedown(file_get_contents(base_path('/changelog.md'))) !!}
                     </div>
                 </div>
             </div>

@@ -35,6 +35,8 @@
 
         @yield('content')
 
+        <a href="{{ route('newActivity') }}" class="button shadow circle-button nav-button"><i class="fa fa-plus"></i></a>
+
         <footer>Toteutus: Matti Suoraniemi</footer>
     </div>
 
