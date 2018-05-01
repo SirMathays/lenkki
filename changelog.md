@@ -1,3 +1,7 @@
+## 0.12.1
+
+- History page search fix
+
 ## 0.12.0
 
 - History page now supports activity type

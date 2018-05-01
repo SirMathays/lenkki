@@ -51,7 +51,7 @@ class ActivityController extends Controller
      * @param  string  $activityType  NULL
      * @return Illuminate\View\View
      */
-    public function history($year, $month = NULL, $activityType = NULL) {
+    public function history($year, $month = 0, $activityType = NULL) {
         
         $data = User::select('users.id', 'users.name');
         $type = null;

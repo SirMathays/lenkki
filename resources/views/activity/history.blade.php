@@ -16,7 +16,7 @@
 			</div>
 			<div class="form-group">
 				<select name="month" class="form-control">
-					<option value="" {{ !$month ? 'selected' : NULL }}>-</option>
+					<option value="0" {{ !$month ? 'selected' : NULL }}>-</option>
 					@foreach([
 						'1' => 'tammikuu',
 						'2' => 'helmikuu',
