@@ -22,17 +22,17 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::middleware('auth')->group(function() {
-	Route::get('/home', 'HomeController@index')->name('home');
+	Route::get('/home/{month?}/{year?}', 'HomeController@index')->name('home');
 
 	Route::prefix('activity')->group(function() {
 		Route::get('/new', 'ActivityController@newActivity')->name('newActivity');
 		Route::get('/edit/{actId}', 'ActivityController@edit')->name('editActivity');
 		Route::get('/{actId}', 'ActivityController@show')->name('showActivity');
+		Route::get('/list/{typeId}/{month?}/{year?}', 'ActivityController@activityTopList')->name('activity.top-list');
 		Route::post('/save', 'ActivityController@save');
 		Route::post('/delete/{rowId}', 'ActivityController@delete');
 	});
 
-	Route::get('/activity/list/{typeId}', 'ActivityController@activityTopList')->name('activity.top-list');
 
 	Route::get('/history/{year}/{month?}/{activityType?}', 'ActivityController@history')->name('history');
 	Route::post('/history/filter', 'ActivityController@historyFilter');

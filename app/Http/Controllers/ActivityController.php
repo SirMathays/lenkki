@@ -12,6 +12,8 @@ use Auth;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 
+use Carbon\Carbon;
+
 class ActivityController extends Controller
 {
     /**
@@ -32,13 +34,16 @@ class ActivityController extends Controller
      * @param  int  $typeId
      * @return Illuminate\Http\Response
      */
-    public function activityTopList($typeId)
+    public function activityTopList($typeId, $month = NULL, $year = NULL)
     {
         $type = ActivityType::findOrFail($typeId);
+        $now = Carbon::now();
 
         return view('activity.top-list', [
             'type' => $type,
             'typeId' => $type->id,
+            'month' => $month ?? $now->month,
+            'year' => $year ?? $now->year,
         ]);
     }
 

@@ -9,6 +9,8 @@ use App\User;
 
 use Auth;
 
+use Carbon\Carbon;
+
 class HomeController extends Controller
 {
     /**
@@ -91,8 +93,12 @@ class HomeController extends Controller
      *
      * @return Illuminate\Http\Response
      */
-    public function index()
+    public function index($month = NULL, $year = NULL)
     {
-        return view('home');
+        $now = Carbon::now();
+        return view('home', [
+            'year' => $year ?? $now->year,
+            'month' => $month ?? $now->month
+        ]);
     }
 }

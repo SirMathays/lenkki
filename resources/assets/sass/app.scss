@@ -178,7 +178,7 @@ a {
 		box-shadow: unset;
 		margin-bottom: 25px;
 
-		a {
+		& > a, .link {
 			color: white;
 			
 			&:hover,
@@ -674,7 +674,7 @@ div.links {
 	margin-bottom: 25px;
 	font-size: 2em;
 
-	& > a.link {
+	a.link {
 		color: rgba(255,255,255,0.5);
 		padding: 0 15px;
 		font-weight: 200;

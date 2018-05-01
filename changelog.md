@@ -1,3 +1,7 @@
+## 0.13.0
+
+- Top List month is now selectable
+
 ## 0.12.1
 
 - History page search fix

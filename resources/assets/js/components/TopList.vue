@@ -2,8 +2,21 @@
     <div class="top-list-wrapper">
         <loading-el v-if="loading"></loading-el>
         <div class="links text-center">
-            <a class="link" id="monthly" @click="active = 'monthly'" v-bind:class="{ active: active == 'monthly' }">{{ monthNames[date.getMonth()] + 'kuu' }}</a>
-            <a class="link" id="yearly" @click="active = 'yearly'" v-bind:class="{ active: active == 'yearly' }">{{ date.getFullYear() }}</a>
+            <span style="position: relative">
+                <a 
+                    class="link" 
+                    v-bind:class="{ active: active == 'monthly' }"
+                    @click="active == 'monthly' ? showMonths = !showMonths : active = 'monthly'" 
+                    id="monthly">{{ monthNames[month-1] + 'kuu' }}</a>
+                <nav-menu v-if="showMonths">
+                    <nav-menu-row 
+                        v-for="monthName, index in monthNames" 
+                        :key="index" 
+                        :url="url+(index+1)" 
+                        :name="monthName+'kuu'"></nav-menu-row>
+                </nav-menu>
+            </span>
+            <a class="link" id="yearly" @click="active = 'yearly'" v-bind:class="{ active: active == 'yearly' }">{{ year }}</a>
         </div>
         
         <div class="list top-list" v-bind:class="{ 'list-loading': loading }">
@@ -17,7 +30,7 @@
                 :score="row.user_score"
                 :type="type"></list-row>
             <div class="more">
-                <a @click="limit == 3 ? limit = 0 : limit = 3">
+                <a class="link" @click="limit == 3 ? limit = 0 : limit = 3">
                     <i class="fa fa-chevron-down" v-bind:class="{ 'fa-rotate-180': limit == 0  }"></i>
                 </a>
             </div>
@@ -50,6 +63,8 @@
 <script>
     import ListRow from './ListRow.vue';
     import Loading from './Loading.vue';
+    import NavMenu from './NavMenu.vue';
+    import NavMenuRow from './NavMenuRow.vue';
 
     export default {
         data: function () {
@@ -57,6 +72,7 @@
                 monthNames: ["Tammi", "Helmi", "Maalis", "Huhti", "Touko", "Kesä", "Heinä", "Elo", "Syys", "Loka", "Marras", "Joulu"],
                 date: new Date(),
                 loading: false,
+                showMonths: false,
                 rows: [],
                 type: 'xp',
 
@@ -70,6 +86,18 @@
                 required: true,
                 type: String,
             },
+            url: {
+                required: false,
+                type: String,
+            },
+            month: {
+                required: true,
+                type: Number,
+            },
+            year: {
+                required: true,
+                type: Number,
+            },
             activityType: {
                 required: false,
                 type: Number,
@@ -77,7 +105,9 @@
         },
         components: {
             'list-row': ListRow,
-            'loading-el': Loading
+            'loading-el': Loading,
+            'nav-menu': NavMenu,
+            'nav-menu-row': NavMenuRow
         },
         mounted() {
             this.getTopList(this.active, this.limit);
@@ -85,6 +115,7 @@
         watch: {
             active: function () {
                 this.getTopList(this.active, this.limit);
+                this.showMonths = false;
             },
             limit: function () {
                 this.getTopList(this.active, this.limit);
@@ -102,13 +133,11 @@
                 }
 
                 var dateUrl = '/';
-                var month = app.date.getMonth()+1;
-                var year = app.date.getFullYear();
 
                 if(type == 'monthly') {
-                    dateUrl = '/'+year+'/'+month;
+                    dateUrl = '/'+app.year+'/'+app.month;
                 } else if(type == 'yearly') {
-                    dateUrl = '/'+year;
+                    dateUrl = '/'+app.year;
                 }
 
                 axios.get('/v1/lists/' + app.list + activityUrl + app.limit + dateUrl)
