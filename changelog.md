@@ -1,3 +1,7 @@
+## 0.11.0
+
+- Recent Activities now visible on activity top list page
+
 ## 0.10.2
 
 - Distribute Monthly Awards cron job fixed
