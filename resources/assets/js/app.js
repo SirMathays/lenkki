@@ -91,14 +91,22 @@ $(window).scroll(function () {
 });
 
 var position = $(window).scrollTop();
+var amount = 0;
 $(window).scroll(function() {
     var scroll = $(window).scrollTop();
     if (scroll > position) {
+        amount++;
+    } else {
+        amount = 0;
+    }
+
+    if(amount > 20) {
         $('.nav').addClass('hide-up');
         $('.nav-button').addClass('hide-down');
     } else {
         $('.nav').removeClass('hide-up');
         $('.nav-button').removeClass('hide-down');
     }
+
     position = scroll;
 });

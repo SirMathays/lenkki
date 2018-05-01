@@ -223,6 +223,7 @@ a {
 		width: 60px;
 		height: 60px;
 		display: flex;
+		z-index: 888;
 		justify-content: center;
 		align-items: center;
 
@@ -355,7 +356,7 @@ a {
 
 .nav-drawer-container {
 	position: fixed;
-	z-index: 9998;
+	z-index: 9995;
 	top: 0;
 	left: 0;
 	width: 200%;

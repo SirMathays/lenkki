@@ -1,3 +1,7 @@
+## 0.10.1
+
+- Top nav & plus button hide logic adjusted
+
 ## 0.10.0
 
 - Plus button visible on bottom right corner on mobile
