@@ -34,7 +34,7 @@ Route::middleware('auth')->group(function() {
 
 	Route::get('/activity/list/{typeId}', 'ActivityController@activityTopList')->name('activity.top-list');
 
-	Route::get('/history/{year}/{month?}', 'ActivityController@history')->name('history');
+	Route::get('/history/{year}/{month?}/{activityType?}', 'ActivityController@history')->name('history');
 	Route::post('/history/filter', 'ActivityController@historyFilter');
 
 	Route::prefix('user')->group(function() {

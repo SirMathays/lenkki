@@ -1,3 +1,7 @@
+## 0.12.0
+
+- History page now supports activity type
+
 ## 0.11.0
 
 - Recent Activities now visible on activity top list page

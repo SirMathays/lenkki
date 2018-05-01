@@ -47,19 +47,33 @@ class ActivityController extends Controller
      * @author Matti
      *
      * @param  string  $year
-     * @param  string  $month  NULL
+     * @param  string  $month         NULL
+     * @param  string  $activityType  NULL
      * @return Illuminate\View\View
      */
-    public function history($year, $month = NULL) {
-        $data = User::select('users.id', 'users.name')->xpTopList($month, $year)->get();
+    public function history($year, $month = NULL, $activityType = NULL) {
+        
+        $data = User::select('users.id', 'users.name');
+        $type = null;
+
+        if($activityType) {
+            $type = ActivityType::findOrFail($activityType);
+            $data->activityTopList($type->id, $month, $year);
+        }
+        else {
+            $data->xpTopList($month, $year);
+        }
 
         $years = Activity::years()->get();
+        $activityTypes = ActivityType::pluck('name', 'id')->toArray();
 
         return view('activity.history', [
-            'data' => $data,
-            'year' => $year,
+            'data' => $data->get(),
             'years' => $years,
-            'month' => $month
+            'year' => $year,
+            'month' => $month,
+            'activity' => optional($type)->id,
+            'activityTypes' => $activityTypes,
         ]);
     }
 
@@ -71,7 +85,11 @@ class ActivityController extends Controller
      * @return Illuminate\Http\Response
      */
     public function historyFilter(Request $request) {
-        return redirect(route('history', ['month' => $request->input('month'), 'year' => $request->input('year')]));
+        return redirect(route('history', [
+            'year' => $request->input('year'),
+            'month' => $request->input('month'), 
+            'activityType' => $request->input('activity')
+        ]));
     }
 
     /**

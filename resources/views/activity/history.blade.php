@@ -35,6 +35,14 @@
 				</select>
 			</div>
 			<div class="form-group">
+				<select name="activity" class="form-control">
+					<option value="" {{ !$activity ? 'selected' : NULL }}>-</option>
+					@foreach($activityTypes as $activityOption => $activityName)
+					<option value="{{ $activityOption }}" {{ $activity == $activityOption ? 'selected' : NULL }}>{{ $activityName }}</option>
+					@endforeach
+				</select>
+			</div>
+			<div class="form-group">
 				<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
 			</div>
 		</form>
@@ -42,8 +50,10 @@
 				<tr>
 					<th>Sija</th>
 					<th>Nimi</th>
-					<th>Pisteet</th>
-					<th>Mitali</th>
+					<th>{{ $activity ? 'Kilometrit' : 'Pisteet' }}</th>
+					@if(!$activity)
+						<th>Mitali</th>
+					@endif
 				</tr>
 			@foreach($data as $user)
 				<tr id="{{ $user->id }}" class="{{ Request::input('id') == $user->id ? 'info' : NULL }}">
@@ -52,14 +62,16 @@
 						<a href="{{ route('profile', $user->id) }}">{{ $user->name }}</a>
 					</td>
 					<td>{{ $user->user_score }}</td>
-					<td>
-						@php
-							$award = App\Award::userAndName($user->id, implode('-', [$month, $year]))->first();
-						@endphp
-						@if($award)
-						<div class="award small shadow {{ $award->grade_string }}"></div>
-		                @endif
-					</td>
+					@if(!$activity)
+						<td>
+							@php
+								$award = App\Award::userAndName($user->id, implode('-', [$month, $year]))->first();
+							@endphp
+							@if($award)
+							<div class="award small shadow {{ $award->grade_string }}"></div>
+			                @endif
+						</td>
+					@endif
 				</tr>
 			@endforeach
 		</table>
