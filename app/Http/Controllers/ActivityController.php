@@ -24,7 +24,9 @@ class ActivityController extends Controller
      */
     public function newActivity() 
     {
-    	return view('activity.new');
+    	return view('activity.new', [
+            'hideButton' => true,
+        ]);
     }
 
     /**
@@ -116,6 +118,7 @@ class ActivityController extends Controller
 
         return view('activity.new', [
             'activity' => $activity,
+            'hideButton' => true,
         ]);
     }
 

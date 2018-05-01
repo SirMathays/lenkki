@@ -35,7 +35,9 @@
 
         @yield('content')
 
-        <a href="{{ route('newActivity') }}" class="button shadow circle-button nav-button"><i class="fa fa-plus"></i></a>
+        @if(empty($hideButton))
+            <a href="{{ route('newActivity') }}" class="button shadow circle-button nav-button"><i class="fa fa-plus"></i></a>
+        @endif
 
         <footer>Toteutus: Matti Suoraniemi</footer>
     </div>
