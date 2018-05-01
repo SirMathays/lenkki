@@ -42,7 +42,7 @@ class DistributeMonthlyAwards extends Command
     public function handle()
     {
         $date = Carbon::now()->subDay();
-        $data = User::select('users.id', 'users.name', 'users.avatar')->topListMonthly($date->month, $date->year)->havingRaw('score > 0')->limit(3)->get();
+        $data = User::select('users.id')->xpTopList($date->month, $date->year)->havingRaw('user_score > 0')->limit(3)->get();
         $grade = 3;
         $grades = config('grades');
         foreach($data as $row) {

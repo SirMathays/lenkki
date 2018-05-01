@@ -1,3 +1,7 @@
+## 0.10.2
+
+- Distribute Monthly Awards cron job fixed
+
 ## 0.10.1
 
 - Top nav & plus button hide logic adjusted
