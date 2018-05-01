@@ -48,7 +48,7 @@ Route::middleware('auth')->group(function() {
 		Route::prefix('lists')->group(function() {
 		    Route::get('/xp-top-list/{limit?}/{year?}/{month?}', 'HomeController@xpTopList');
 		    Route::get('/activity-top-list/{activityType}/{limit?}/{year?}/{month?}', 'HomeController@activityTopList');
-		    Route::get('/recentActivities', 'HomeController@recentActivities');
+		    Route::get('/recentActivities/{activityType?}', 'HomeController@recentActivities');
 		});
 
 		Route::prefix('user')->group(function() {

@@ -44,6 +44,10 @@
             user: {
                 type: Number,
                 required: false
+            },
+            activityType: {
+                type: Number,
+                required: false
             }
         },
         watch: {
@@ -56,6 +60,9 @@
                 var app = this;
                 app.loading = true;
                 var getUrl = '/v1/lists/recentActivities';
+
+                if(app.activityType)
+                    getUrl = getUrl + '/' + app.activityType;
 
                 if(app.user)
                     getUrl = '/v1/user/activities/' + app.user + '?page=' + app.page;

@@ -56,25 +56,31 @@ class HomeController extends Controller
      * Return 10 most recent activities
      * @author Matti
      *
+     * @param  int  $typeId
      * @return object
      */
-    public function recentActivities() 
+    public function recentActivities($typeId = NULL) 
     {
-        $data = Activity::orderBy('performed_at', 'DESC')->orderBy('updated_at', 'DESC')->limit(10)->paginate(10);
+        $data = Activity::orderBy('performed_at', 'DESC')->orderBy('updated_at', 'DESC')->limit(10);
 
-        return $data;
+        if($typeId) {
+            $type = ActivityType::find($typeId);
+            $data->where('type_id', $type->id);
+        }
+
+        return $data->paginate(10);
     }
 
     /**
      * Return activities related to user
      * @author Matti
      *
-     * @param  int  $rowId
+     * @param  int  $userId
      * @return object
      */
-    public function userActivities($rowId) 
+    public function userActivities($userId) 
     {
-        $data = Activity::where('user_id', $rowId)->orderBy('performed_at', 'DESC')->orderBy('updated_at', 'DESC')->paginate(10);
+        $data = Activity::where('user_id', $userId)->orderBy('performed_at', 'DESC')->orderBy('updated_at', 'DESC')->paginate(10);
 
         return $data;
     }
