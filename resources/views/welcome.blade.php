@@ -47,6 +47,7 @@
 
             .top-right {
                 position: fixed;
+                z-index: 9999;
                 right: 10px;
                 top: 18px;
             }
@@ -61,6 +62,7 @@
 
             .links > * {
                 color: #636b6f;
+                background-color: white;
                 padding: 0 25px;
                 font-size: 12px;
                 font-weight: 600;
@@ -75,11 +77,11 @@
 
             .content {
                 position: relative;
-                width: 500px;
+                width: 550px;
                 text-align: center;
             }
 
-            @media (max-width: 500px) {
+            @media (max-width: 550px) {
                 .content {
                     width: 100%;
                 }
@@ -92,11 +94,12 @@
                 top: 100%;
                 left: 0;
                 text-align: left;
-                border-top: 1px #636b6f solid;
             }
 
             .changelog-content {
-                padding: 0 10px;
+                border-top: 1px #636b6f solid;
+                margin: 0 15px;
+                padding: 0 20px;
             }
         </style>
     </head>
