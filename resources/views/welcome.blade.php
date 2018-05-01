@@ -75,25 +75,10 @@
                 margin-bottom: 30px;
             }
 
-            .content {
-                position: relative;
-                width: 550px;
-                text-align: center;
-            }
-
-            @media (max-width: 550px) {
-                .content {
-                    width: 100%;
-                }
-            }
-
             .changelog {
-                position: absolute;
-                width: 100%;
-                margin-top: 35px;
-                top: 100%;
-                left: 0;
-                text-align: left;
+                max-width: 750px;
+                margin: 0 auto;
+                padding: 15px 0;
             }
 
             .changelog-content {
@@ -126,17 +111,15 @@
                 </div>
 
                 <div class="links">
-                    <p>Lenkki v{{ env('APP_VERSION') }}</p>
-                </div>
-
-                <div class="changelog">
-                    <div class="changelog-content">
-                        <h1>Changelog</h1>
-                        {!! parsedown(file_get_contents(base_path('/changelog.md'))) !!}
-                    </div>
+                    <a href="#changelog">Lenkki v{{ env('APP_VERSION') }}</a>
                 </div>
             </div>
-            
+        </div>
+        <div class="changelog" id="changelog">
+            <div class="changelog-content">
+                <h1>Changelog</h1>
+                {!! parsedown(file_get_contents(base_path('/changelog.md'))) !!}
+            </div>
         </div>
     </body>
 </html>

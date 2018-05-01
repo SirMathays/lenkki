@@ -1,4 +1,4 @@
-## 0.13.0
+## 0.13.0 (Current version)
 
 - Top List month is now selectable
 
