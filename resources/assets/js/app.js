@@ -16,13 +16,13 @@ import VueRouter from 'vue-router';
 window.Vue.use(VueRouter);
 
 // OTHER VUE COMPONENTS
-Vue.component('top-list', require('./components/TopList.vue'));
-Vue.component('activity-list', require('./components/ActivityList.vue'));
-Vue.component('user-avatar', require('./components/UserAvatar.vue'));
-Vue.component('nav-menu', require('./components/NavMenu.vue'));
-Vue.component('nav-drawer', require('./components/NavDrawer.vue'));
+Vue.component('top-list',       require('./components/TopList.vue'));
+Vue.component('activity-list',  require('./components/ActivityList.vue'));
+Vue.component('user-avatar',    require('./components/UserAvatar.vue'));
+Vue.component('nav-menu',       require('./components/NavMenu.vue'));
+Vue.component('nav-drawer',     require('./components/NavDrawer.vue'));
 Vue.component('activity-modal', require('./components/modals/ActivityModal.vue'));
-Vue.component('award-modal', require('./components/modals/AwardModal.vue'));
+Vue.component('award-modal',    require('./components/modals/AwardModal.vue'));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -36,8 +36,7 @@ const app = new Vue({
     data: {
         activeActivity: false,
         unseenAwards: false,
-        showMenu: false,
-        showTypes: false,
+        show: null,
     },
     methods: {
         showActivity: function(rowId) {
@@ -59,20 +58,7 @@ const app = new Vue({
                 });
         }
     },
-    watch: {
-        showMenu: function(val) {
-            if(this.showMenu) {
-                this.showTypes = false;
-            }
-        },
-        showTypes: function(val) {
-            if(this.showTypes) {
-                this.showMenu = false;
-            }
-        },
-    },
     mounted: function() {
-        this.loading = false;
         this.checkMedals();
     }
 });

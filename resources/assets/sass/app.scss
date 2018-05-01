@@ -177,9 +177,11 @@ a {
 		color: white;
 		box-shadow: unset;
 		margin-bottom: 25px;
+		padding: 15px 0;
 
 		& > a, .link {
 			color: white;
+			cursor: pointer;
 			
 			&:hover,
 			&:focus,
@@ -670,15 +672,16 @@ footer {
 }
 
 div.links {
-	margin-top: 10px;
-	margin-bottom: 25px;
-	font-size: 2em;
+	margin: 10px 25px 25px 25px;
+    font-size: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
 	a.link {
 		color: rgba(255,255,255,0.5);
 		padding: 0 15px;
 		font-weight: 200;
-		transition: .4s color;
 
 		&:hover {
 			color: #fff;

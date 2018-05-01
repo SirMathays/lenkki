@@ -93,12 +93,13 @@ class HomeController extends Controller
      *
      * @return Illuminate\Http\Response
      */
-    public function index($month = NULL, $year = NULL)
+    public function index()
     {
         $now = Carbon::now();
+        
         return view('home', [
-            'year' => $year ?? $now->year,
-            'month' => $month ?? $now->month
+            'year' => $now->year,
+            'month' => $now->month
         ]);
     }
 }

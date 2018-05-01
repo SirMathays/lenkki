@@ -7,7 +7,9 @@
 @else
     <nav class="nav faded">
         <div class="nav-part nav-burger">
-            <span class="link" v-on:click="showMenu = !showMenu"><i class="fa fa-bars"></i></span>
+            <span class="link" v-on:click="show == 'menu' ? show = null : show = 'menu'">
+                <i class="fa fa-bars"></i>
+            </span>
         </div>
         <div class="nav-part nav-left">
             <a href="{{ route('home') }}">
@@ -26,10 +28,10 @@
                         @lang("ui.$name")
                     </a>
                 @else
-                    <span class="link" v-on:click="showTypes = !showTypes">
+                    <span class="link" v-on:click="show == 'types' ? show = null : show = 'types'">
                         <i class="fa fa-fw fa-{{ $item->icon }}"></i>
                         @lang("ui.$name")
-                        <nav-menu v-if="showTypes" v-cloak>
+                        <nav-menu v-if="show == 'types'" v-cloak>
                             @foreach($item->options as $name => $id)
                                 <li>
                                     <a href="{{ route('activity.top-list', $id) }}">
@@ -49,7 +51,7 @@
                 </a>
             @endforeach
             <div class="profile-nav">
-                <span class="profile shadow" v-on:click="showMenu = !showMenu">
+                <span class="profile shadow" v-on:click="show == 'menu' ? show = null : show = 'menu'">
                     @if(Auth::user()->avatar_url)
                         <img src="{{ Auth::user()->avatar_url }}">
                     @else
@@ -57,7 +59,7 @@
                     @endif
                     <div class="level">{{ Auth::user()->level->number }}</div>
                 </span>
-                <nav-menu v-if="showMenu" v-cloak>
+                <nav-menu v-if="show == 'menu'" v-cloak>
                     @foreach(links(Auth::id())->user as $name => $item)
                         <li>
                             <a href="{{ $item->link }}">
@@ -77,7 +79,7 @@
             </div>
         </div>
     </nav>
-    <nav-drawer v-if="showMenu" v-on:close="showMenu = !showMenu" v-cloak>
+    <nav-drawer v-if="show == 'menu'" v-on:close="show = null" v-cloak>
         <div class="profile-box">
             <div class="profile-nav">
                 <span class="profile shadow">

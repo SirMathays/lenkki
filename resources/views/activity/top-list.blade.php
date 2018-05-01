@@ -8,8 +8,8 @@
             <div class="col-md-10 col-md-offset-1">
             	<h1 class="text-center" style="margin-top: 0;margin-bottom: 25px;">{{ $type->name }}</h1>
                 <top-list 
-                    :url="{{ "'/activity/list/$typeId/'" }}" 
-                    :month="{{ $month }}" :year="{{ $year }}" 
+                    :month="'{{ $month }}'" 
+                    :year="'{{ $year }}'" 
                     :list="'activity-top-list'" 
                     :activity-type="{{ $typeId }}"></top-list>
             </div>

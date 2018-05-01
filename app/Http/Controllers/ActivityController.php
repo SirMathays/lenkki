@@ -34,7 +34,7 @@ class ActivityController extends Controller
      * @param  int  $typeId
      * @return Illuminate\Http\Response
      */
-    public function activityTopList($typeId, $month = NULL, $year = NULL)
+    public function activityTopList($typeId)
     {
         $type = ActivityType::findOrFail($typeId);
         $now = Carbon::now();
@@ -42,8 +42,8 @@ class ActivityController extends Controller
         return view('activity.top-list', [
             'type' => $type,
             'typeId' => $type->id,
-            'month' => $month ?? $now->month,
-            'year' => $year ?? $now->year,
+            'month' => $now->month,
+            'year' => $now->year,
         ]);
     }
 
