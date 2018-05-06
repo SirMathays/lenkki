@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
     <div class="panel transparent">
         <div class="row">
@@ -31,6 +32,21 @@
         </div>
     </div>
 </div>
+
+{{-- <div class="container">
+    <div class="panel">
+        <div class="row">
+            <div class="col-sm-12">
+                <h3 class="text-center">Aktiivisuus</h3>
+                <div style="width: 100%;border-left: 1px black solid; border-bottom: 1px black solid;">
+                  <svg style="display:block;" viewBox="0 0 320 101" xmlns="http://www.w3.org/2000/svg">
+                    <polyline fill="none" stroke="#4a90e2" stroke-width="1" points="{{ $graph }}"/>
+                  </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> --}}
 
 <div class="container default">
     <div class="panel">

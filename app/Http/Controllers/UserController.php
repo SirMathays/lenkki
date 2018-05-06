@@ -51,9 +51,21 @@ class UserController extends Controller
     public function show($userId) 
     {
     	$user = User::findOrFail($userId);
+        $activeness = User::activenessWhole(2018)->where('users.id', $user->id)->first()->setAppends([])->toArray();
+
+        $spot = 0;
+        $maxValue = max($activeness);
+        $spotAmount = 320/(count($activeness)-1);
+        $graph = [];
+        foreach($activeness as $index => $dot) {
+            $yValue = $maxValue ? 101-(round(($dot/$maxValue)*100)) : 100;
+            $graph[] = "$spot,$yValue";
+            $spot = $spot+$spotAmount;
+        }
 
     	return view('user.show', [
-    		'user' => $user
+    		'user' => $user,
+            'graph' => implode(' ', $graph),
     	]);
     }
 

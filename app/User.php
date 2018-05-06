@@ -120,6 +120,40 @@ class User extends Authenticatable
         return $query;
     }
 
+    public function scopeJoinActivities($query)
+    {
+        return $query->leftJoin('activities', 'activities.user_id', 'users.id');
+    }
+
+    public function scopeActiveness($query, $month, $year)
+    {
+        $where = implode(' and ', [
+            "month(performed_at) = $month",
+            "year(performed_at) = $year",
+            "deleted_at IS NULL",
+        ]);
+
+        $name = strtolower(date("F", mktime(0, 0, 0, $month, 1)));
+
+        $query->selectRaw("count((select activities.id where $where)) $name");
+
+        return $query;
+    }
+
+    public function scopeActivenessWhole($query, $year)
+    {
+        $months = [1,2,3,4,5,6,7,8,9,10,11,12];
+        $now = Carbon::now();
+
+        foreach($months as $month) {
+            if($now->month >= $month) {
+                $query->activeness($month, $year);
+            }
+        }
+
+        return $query->joinActivities();
+    }
+
     public function getInitialsAttribute() {
         $name = explode(' ', $this->name);
 
