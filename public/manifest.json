@@ -1,0 +1,32 @@
+{
+    "name": "Lenkki",
+    "short_name": "Lenkki",
+    "start_url": "/?utm_source=web_app_manifest",
+    "icons": [
+        {
+            "src": "/storage/logo/android-chrome-192x192.png?v=wAO8vA4Jpl",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/storage/logo/android-chrome-192x192.png?v=wAO8vA4Jpl",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "/storage/logo/android-chrome-192x192.png?v=wAO8vA4Jpl",
+            "sizes": "384x384",
+            "type": "image/png"
+        },
+        {
+            "src": "/storage/logo/android-chrome-512x512-2.png?v=wAO8vA4Jpl",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "display": "standalone",
+    "lang": "fi-FI",
+    "orientation": "any",
+    "theme_color": "#3b59b5",
+    "background_color": "#3b59b5"
+}

@@ -9,15 +9,15 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-        <link rel="apple-touch-icon" sizes="180x180" href="https://lenkki.muutamatmeista.com/storage/logo/apple-touch-icon.png?v=wAO8vA4Jpl">
-        <link rel="icon" type="image/png" sizes="32x32" href="https://lenkki.muutamatmeista.com/storage/logo/favicon-32x32.png?v=wAO8vA4Jpl">
-        <link rel="icon" type="image/png" sizes="16x16" href="https://lenkki.muutamatmeista.com/storage/logo/favicon-16x16.png?v=wAO8vA4Jpl">
-        <link rel="manifest" href="https://lenkki.muutamatmeista.com/storage/logo/manifest.json?v=wAO8vA4Jpp">
-        <link rel="mask-icon" href="https://lenkki.muutamatmeista.com/storage/logo/safari-pinned-tab.svg?v=wAO8vA4Jpl" color="#4a90e2">
-        <link rel="shortcut icon" href="https://lenkki.muutamatmeista.com/storage/logo/favicon.ico?v=wAO8vA4Jpk">
+        <link rel="apple-touch-icon" sizes="180x180" href="https://lenkki.muutamatmeista.com/storage/logo/apple-touch-icon.png?v=asdeelol">
+        <link rel="icon" type="image/png" sizes="32x32" href="https://lenkki.muutamatmeista.com/storage/logo/favicon-32x32.png?v=asdeelol">
+        <link rel="icon" type="image/png" sizes="16x16" href="https://lenkki.muutamatmeista.com/storage/logo/favicon-16x16.png?v=asdeelol">
+        <link rel="manifest" href="/manifest.json?v=asdeelol">
+        <link rel="mask-icon" href="https://lenkki.muutamatmeista.com/storage/logo/safari-pinned-tab.svg?v=asdeelol" color="#4a90e2">
+        <link rel="shortcut icon" href="https://lenkki.muutamatmeista.com/storage/logo/favicon.ico?v=asdeelol">
         <meta name="apple-mobile-web-app-title" content="Lenkki">
         <meta name="application-name" content="Lenkki">
-        <meta name="msapplication-config" content="https://lenkki.muutamatmeista.com/storage/logo/browserconfig.xml?v=wAO8vA4Jpk">
+        <meta name="msapplication-config" content="https://lenkki.muutamatmeista.com/storage/logo/browserconfig.xml?v=asdeelol">
         <meta name="theme-color" content="#4a90e2">
 
         <!-- Styles -->
