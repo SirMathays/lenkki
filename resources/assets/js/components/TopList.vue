@@ -4,6 +4,7 @@
         <div class="links text-center">
             <i class="fa fa-fw fa-arrow-circle-left link" @click="activeTime('minus')"></i>
             <div class="filters">
+                <a class="link" id="default" v-if="activeMonth != month || activeYear != year" @click="activeMonth = month, activeYear = year"><i class="fa fa-calendar-o"></i></a>
                 <a class="link" id="month" @click="scope = 'month'" v-bind:class="{ active: scope == 'month' }">{{ monthNames[activeMonth] }}</a>
                 <a class="link" id="year" @click="scope = 'year'" v-bind:class="{ active: scope == 'year' }">{{ activeYear }}</a>
             </div>

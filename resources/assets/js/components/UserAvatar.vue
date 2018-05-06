@@ -26,6 +26,9 @@
                 type: String,
                 default: null
             }
+        },
+        mounted() {
+            // 
         }
 	}
 </script>

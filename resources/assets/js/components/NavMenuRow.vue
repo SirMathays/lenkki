@@ -15,6 +15,9 @@
 				required: true,
 				type: String
 			}
+		},
+		mounted() {
+			// 
 		}
 	}
 </script>
