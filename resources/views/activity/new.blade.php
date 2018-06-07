@@ -15,6 +15,17 @@
                 @endif
             </div>
 
+            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                <label for="name" class="col-md-4 control-label">@lang('ui.activity.name')</label>
+                <div class="col-md-6">
+                    <input 
+                        type="text" 
+                        name="name" 
+                        class="form-control"
+                        value="{{ old('name') ?? $edit ? $activity->name : NULL }}">
+                </div>
+            </div>
+
             <div class="form-group{{ $errors->has('type_id') ? ' has-error' : '' }}">
                 <label for="type_id" class="col-md-4 control-label">@lang('ui.activity.type_id')</label>
 

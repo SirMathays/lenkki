@@ -7,6 +7,7 @@
                 <span>{{ activity.performed_at_formatted }}</span>
                 <span class="xp pull-right">+{{ activity.xp }} xp</span>
             </h3>
+            <h5 class="col-md-12" v-if="activity.name"><i>{{ activity.name }}</i></h5>
             <div class="col-md-12 form-group">
                 <p><b>Suorittaja:</b> <a :href="'/user/' + user.id">{{ user.name }}</a></p>
                 <p><b>Pituus:</b> {{ activity.km }}km</p>

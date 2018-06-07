@@ -23,6 +23,7 @@
 		'activity' => [
 			'singular' => 'Aktiviteetti #:id',
 			'new' => 'Uusi aktiviteetti',
+			'name' => 'Aktiviteetin nimi',
 			'km' => 'Pituus',
 			'duration' => 'Kesto',
 			'type_id' => 'Tyyppi',

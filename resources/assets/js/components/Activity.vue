@@ -2,7 +2,7 @@
     <a v-on:click="$emit('show')" class="list-row button">
         <div class="row-child">
             <user-avatar v-if="showProfile == true" :link="false" :key="id" :id="id" :initials="initials" :avatar="avatar"></user-avatar>
-            <span class="text-muted"><b>{{ activityName }}</b><br><small>{{ km }}km/{{ duration }}min</small></span>
+            <span class="text-muted"><b>{{ name || activityName }}</b><br><small>{{ km }}km/{{ duration }}min</small></span>
         </div>
         <span class="amount xp">+{{ xp }} xp</span>
         <span class="date text-muted">{{ date }}</span>
@@ -35,6 +35,10 @@
                 required: false,
                 type: String,
                 default: null
+            },
+            name: {
+                type: String,
+                required: false
             },
             activityName: {
                 type: String,

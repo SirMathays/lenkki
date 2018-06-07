@@ -7,6 +7,7 @@
             :id="row.id" 
             :showProfile="showProfile"
             :activityName="row.activity_name"
+            :name="row.name"
             :initials="row.user.initials" 
             :avatar="row.user.avatar_url" 
             :xp="row.xp"

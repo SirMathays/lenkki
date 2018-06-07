@@ -163,6 +163,7 @@ class ActivityController extends Controller
     {
     	$request->validate([
             'performed_at' => 'date',
+            'name' => 'nullable',
     		'km' => 'required|numeric',
     		'duration' => 'required|integer',
     		'type_id' => 'exists:activity_types,id',
@@ -180,6 +181,7 @@ class ActivityController extends Controller
         }
 
         $activity->user_id = Auth::id();
+        $activity->name = $data['name'];
         $activity->km = $data['km'];
         $activity->duration = $data['duration'];
         $activity->type_id = $data['type_id'];
