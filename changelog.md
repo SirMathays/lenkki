@@ -1,4 +1,8 @@
-## 0.14.0 (Current version)
+## 0.15.0 (Current version)
+
+- Activity can be named
+
+## 0.14.0
 
 - Top List month and year select style and logic changed
 
